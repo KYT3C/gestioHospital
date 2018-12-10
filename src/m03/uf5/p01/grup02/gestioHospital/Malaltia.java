@@ -20,6 +20,10 @@ public class Malaltia {
         this.duradaDies = duradaDies;
     }
     
+    public String getNom(){
+        return nom;
+    }
+    
     public int getCodi(){
         return codi;
     }
