@@ -1,6 +1,9 @@
 package m03.uf5.p01.grup02.gestioHospital;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  *
  * @author K Y T 3 C
@@ -25,8 +28,8 @@ public class GestioHospital {
             
             //Opción para registrar la visita.
             if(option == 1){
-            
-                System.out.println("Registrar visita");
+
+                System.out.println("Ha seleccionat registrar visita");
                 System.out.println("");
             
             }
@@ -34,15 +37,31 @@ public class GestioHospital {
             //Opción para crear nuevo paciente.
             if(option == 2){
             
-                System.out.println("Nou pacient");
+                //Comprueba si el nombre solo contiene letras.
+                String nombre = "Gonzalo3";
+                
+                System.out.println("Ha seleccionat nou pacient");
                 System.out.println("");
-            
+
+                try{
+                CharSequence inputStr = nombre;
+                Pattern pattern = Pattern.compile("^[a-zA-Z\\s]*$");
+                Matcher matcher = pattern.matcher(inputStr);
+                
+                if(matcher.matches()){
+                    System.out.println("El nom s'ha introduït correctament");
+                }else{ throw new Exception("El nom que s'ha introduït no és vàlid"); }
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+
+ 
             }
             
             //Opción para mostrar un paciente.
             if(option == 3){
             
-                System.out.println("Mostrar pacient");
+                System.out.println("Ha seleccionat mostrar pacient");
                 System.out.println("");
             
             }
@@ -50,7 +69,7 @@ public class GestioHospital {
             //Opción mstrar un médico.
             if(option == 4){
             
-                System.out.println("Mostrar metge");
+                System.out.println("Ha seleccionat mostrar metge");
                 System.out.println("");
             
             }
@@ -58,7 +77,7 @@ public class GestioHospital {
             //Opción para ver el historial.
             if(option == 5){
             
-                System.out.println("Veure historial");
+                System.out.println("Ha seleccionat veure historial");
                 System.out.println("");
             
             }
@@ -66,7 +85,7 @@ public class GestioHospital {
             //Opción para salir.
             if(option == 6){
             
-                System.out.println("Sortir");
+                System.out.println("Ha seleccionat sortir");
                 System.out.println("");
             
             }
@@ -77,7 +96,7 @@ public class GestioHospital {
     //Método que muestra el menú.
     private static void menu() {
         
-        System.out.println("        Menu");
+        System.out.println("        Menú");
         System.out.println("1. Registrar visita");
         System.out.println("2. Nou pacient");
         System.out.println("3. Mostrar pacient");
@@ -88,5 +107,5 @@ public class GestioHospital {
         System.out.println("");
         
     }
-    
+
 }
