@@ -21,5 +21,29 @@ public abstract class Persona {
         this.nif = nif;
         this.telefon = telefon;
     }
-    
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getCognom1() {
+        return cognom1;
+    }
+
+    public String getCognom2() {
+        return cognom2;
+    }
+
+    public String getNumSegSocial() {
+        return numSegSocial;
+    }
+
+    public String getNif() {
+        return nif;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+   
 }

@@ -9,17 +9,16 @@ import java.util.ArrayList;
 public class Hospital {
     String nom;
     ArrayList<Pacient> pacients;
-    ArrayList<Historial> historials;
     ArrayList<Metge> metges;
     ArrayList<Malaltia> malalties;
     Adreca adreca;
     
-    public Hospital(String nom){
+    public Hospital(String nom, String adreca){
         this.nom = nom;
         pacients = new ArrayList<>();
-        historials = new ArrayList<>();
         metges = new ArrayList<>();
         malalties = new ArrayList<>();
+        this.adreca = new Adreca();
     }
     
     public void afegirPacient(Pacient pacient){
@@ -34,7 +33,21 @@ public class Hospital {
         malalties.add(malaltia);
     }
     
-    public void afegirHistorial(Historial historial){
-        historials.add(historial);
+    public Pacient buscarPacientNif(String nif){
+        
+        for(Pacient n : pacients){
+            if(n.getNif().equals(nif))
+                return n;
+        }
+        return null;
+    }
+    
+    public Pacient buscarPacientNumSeg(String SegSoc){
+        
+        for(Pacient n : pacients){
+            if(n.getNumSegSocial().equals(SegSoc))
+                return n;
+        }
+        return null;
     }
 }
