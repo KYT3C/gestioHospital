@@ -10,33 +10,33 @@ import java.util.ArrayList;
 public class Historial {
     static int numHistorial = 1;
     int codi;
-    Metge metge;
-    Malaltia malaltia;
+    Pacient pacient;
     
     private ArrayList<Visita> visita;
     
-    public Historial(LocalDateTime data, Metge metge, Malaltia malaltia){
-        visita = new ArrayList<>();
+    public Historial(Pacient pacient){
         codi = numHistorial++;
-        this.metge = metge;
-        this.malaltia = malaltia;
+        visita = new ArrayList<>();
+        this.pacient = pacient;
     }
     
     public int getCodi() {
         return codi;
     }
     
-    public Metge getMetge(){
-        return metge;
+    public Pacient getPacient() {
+        return pacient;
     }
     
-    public Malaltia getMalaltia() {
-        return malaltia;
-    }
-    
-    public void crearVisita(){
+    public void crearVisita(Metge metge, Malaltia malaltia){
         LocalDateTime s;
         s = LocalDateTime.now();
-        visita.add(new Visita(s,getMetge(),getMalaltia())); 
+        visita.add(new Visita(s, metge, malaltia));
+    }
+    
+    @Override
+    public String toString() {
+        return null;
+        
     }
 }
