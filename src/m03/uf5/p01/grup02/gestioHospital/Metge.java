@@ -14,6 +14,10 @@ public class Metge extends Persona{
         super(nom, cognom1, cognom2, numSegSocial, nif, telefon);
     }
     
+    public int getNumEmpleat(){
+        return numEmpleat;
+    }
+    
     @Override
    public String toString(){
         return null;
