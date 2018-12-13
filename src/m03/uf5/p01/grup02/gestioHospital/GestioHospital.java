@@ -1,6 +1,5 @@
 package m03.uf5.p01.grup02.gestioHospital;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,10 +20,10 @@ public class GestioHospital {
         
         menu();
         
-        System.out.print("Introdueix una opció : ");
-        option = keyboard.nextInt();
-        
         do{
+            System.out.print("Introdueix una opció : ");
+            option = keyboard.nextInt();
+            System.out.println("");
             
             //Opción para registrar la visita.
             if(option == 1){
@@ -35,7 +34,7 @@ public class GestioHospital {
             }
             
             //Opción para crear nuevo paciente.
-            if(option == 2){
+            else if(option == 2){
             
                 //Comprueba si el nombre solo contiene letras.
                 String nombre = "Gonzalo3";
@@ -59,7 +58,7 @@ public class GestioHospital {
             }
             
             //Opción para mostrar un paciente.
-            if(option == 3){
+            else if(option == 3){
             
                 System.out.println("Ha seleccionat mostrar pacient");
                 System.out.println("");
@@ -67,15 +66,17 @@ public class GestioHospital {
             }
             
             //Opción mstrar un médico.
-            if(option == 4){
+            else if(option == 4){
             
                 System.out.println("Ha seleccionat mostrar metge");
                 System.out.println("");
+                Metge m = new Metge("Hola" ,"Hola" ,"Hola" ,"Hola" ,"Hola" ,"Hola");
+                m.toString();
             
             }
             
             //Opción para ver el historial.
-            if(option == 5){
+            else if(option == 5){
             
                 System.out.println("Ha seleccionat veure historial");
                 System.out.println("");
@@ -83,14 +84,14 @@ public class GestioHospital {
             }
             
             //Opción para salir.
-            if(option == 6){
+            else if(option == 6){
             
                 System.out.println("Ha seleccionat sortir");
                 System.out.println("");
             
             }
             
-        }while(option > 6);
+        }while(option  != 6);
     }
 
     //Método que muestra el menú.
