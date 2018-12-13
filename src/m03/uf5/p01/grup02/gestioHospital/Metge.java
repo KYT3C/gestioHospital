@@ -37,7 +37,7 @@ public class Metge extends Persona{
             System.out.println("");
             
             if(option == 1){
-            
+                System.out.println("Me cago en to");
             }
             if(option == 2){
             
