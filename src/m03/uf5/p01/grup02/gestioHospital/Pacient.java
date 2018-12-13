@@ -13,7 +13,7 @@ public class Pacient extends Persona {
         this.historial = new Historial(this);
     }
     
-    public Historial getHiistorial() {
+    public Historial getHistorial() {
         return historial;
     }
     
