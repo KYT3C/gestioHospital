@@ -17,9 +17,9 @@ public class Metge extends Persona{
     }
     
     public int getNumEmpleat(){
-        
         return numEmpleat;
     }
+    
     @Override
    public String toString(){
        Scanner keyboard = new Scanner(System.in);

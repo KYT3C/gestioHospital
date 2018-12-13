@@ -11,6 +11,7 @@ public class Hospital {
     ArrayList<Pacient> pacients;
     ArrayList<Metge> metges;
     ArrayList<Malaltia> malalties;
+    ArrayList<Historial> historials;
     Adreca adreca;
     
     public Hospital(String nom, String adreca){
@@ -18,11 +19,13 @@ public class Hospital {
         pacients = new ArrayList<>();
         metges = new ArrayList<>();
         malalties = new ArrayList<>();
+        historials = new ArrayList<>();
         this.adreca = new Adreca();
     }
     
     public void afegirPacient(Pacient pacient){
         pacients.add(pacient);
+        historials.add(pacient.getHistorial());
     }
     
     public void afegirMetge(Metge metge){
@@ -33,6 +36,7 @@ public class Hospital {
         malalties.add(malaltia);
     }
     
+    //Buscar pacients
     public Pacient buscarPacientNif(String nif){
         
         for(Pacient n : pacients){
@@ -49,5 +53,58 @@ public class Hospital {
                 return n;
         }
         return null;
+    }
+    
+    public Pacient buscarPacientCodiHistorial(int codi){
+        for(Historial h : historials){
+            if(h.getCodi() == codi)
+                return h.getPacient();
+        }
+        return null;
+    }
+    
+    //Buscar malalties
+    public Malaltia buscarMalaltiaCodi(int codi){
+        for(Malaltia m : malalties)
+            if(m.getCodi() == codi)
+                return m;
+        return null;
+    }
+    
+    //Buscar metges
+    public Metge bucarMetgeNif(String nif){
+        for(Metge m : metges)
+            if(m.getNif().equals(nif))
+                return m;
+        return null;
+    }
+    
+    public Metge buscarMetgeNumSeg(String SegSoc){
+        for(Metge m: metges)
+            if(m.getNumSegSocial() == SegSoc)
+                return m;
+        return null;
+    }
+    
+    
+    public Metge buscarMetgeNumEmpleat(int numEmpleat){
+        for(Metge m: metges)
+            if(m.getNumEmpleat() == numEmpleat)
+                return m;
+        return null;
+    }
+    
+    //Crear visita
+    /**
+     * 
+     * @param pacient pacient que fa la visita
+     * @param metge metge que aten
+     * @param malaltia malaltia diagnosticada
+     */
+    public void crearVisita(Pacient pacient, Metge metge, Malaltia malaltia){
+        if(pacient == null || metge == null || malaltia == null){
+            throw new NullPointerException("Uno de los parametros es null");
+        }
+        pacient.getHistorial().crearVisita(metge, malaltia);
     }
 }
