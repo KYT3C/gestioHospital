@@ -8,16 +8,12 @@ import java.time.LocalDateTime;
  */
 public class Visita {
     private final LocalDateTime data;
-    private final String nom;
-    private final String cognom1;
-    private final String cognom2;
-    private final String malaltia;
+    private final Metge metge;
+    private final Malaltia malaltia;
     
-    public Visita(LocalDateTime data, String nom, String cognom1, String cognom2, String malaltia){
+    public Visita(LocalDateTime data, Metge metge, Malaltia malaltia){
         this.data = data;
-        this.nom = nom;
-        this.cognom1 = cognom1;
-        this.cognom2 = cognom2;
+        this.metge = metge;
         this.malaltia = malaltia;
     }
 
@@ -25,19 +21,11 @@ public class Visita {
         return data;
     }
 
-    public String getNom() {
-        return nom;
+    public Metge getMetge() {
+        return metge;
     }
 
-    public String getCognom1() {
-        return cognom1;
-    }
-    
-    public String getCognom2() {
-        return cognom2;
-    }
-
-    public String getMalaltia() {
+    public Malaltia getMalaltia() {
         return malaltia;
     }
 }

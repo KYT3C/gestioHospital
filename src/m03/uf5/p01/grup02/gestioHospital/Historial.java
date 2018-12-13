@@ -1,6 +1,7 @@
 package m03.uf5.p01.grup02.gestioHospital;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,48 +10,33 @@ import java.time.LocalDateTime;
 public class Historial {
     static int numHistorial = 1;
     int codi;
-    LocalDateTime data;
-    String nom;
-    String cognom1;
-    String cognom2;
-    String malaltia;
+    Metge metge;
+    Malaltia malaltia;
     
-    private static Visita[] visita = new Visita[codi];
+    private ArrayList<Visita> visita;
     
-    public Historial(LocalDateTime data, String nom, String cognom1, String cognom2, String malaltia){
+    public Historial(LocalDateTime data, Metge metge, Malaltia malaltia){
+        visita = new ArrayList<>();
         codi = numHistorial++;
-        this.data = data;
-        this.nom = nom;
-        this.cognom1 = cognom1;
-        this.cognom2 = cognom2;
+        this.metge = metge;
         this.malaltia = malaltia;
     }
     
     public int getCodi() {
         return codi;
     }
-
-    public static int getNumHistorial() {
-        return numHistorial;
+    
+    public Metge getMetge(){
+        return metge;
     }
     
-    public LocalDateTime getData() {
-        return data;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getCognom1() {
-        return cognom1;
-    }
-    
-    public String getCognom2() {
-        return cognom2;
-    }
-    
-    public String getMalaltia() {
+    public Malaltia getMalaltia() {
         return malaltia;
+    }
+    
+    public void crearVisita(){
+        LocalDateTime s;
+        s = LocalDateTime.now();
+        visita.add(new Visita(s,getMetge(),getMalaltia())); 
     }
 }
