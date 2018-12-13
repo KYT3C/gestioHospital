@@ -13,6 +13,10 @@ public class Pacient extends Persona {
         this.historial = new Historial(this);
     }
     
+    public Historial getHiistorial() {
+        return historial;
+    }
+    
     @Override
     public String toString() {
         return null;
