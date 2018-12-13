@@ -19,7 +19,13 @@ public class Pacient extends Persona {
     
     @Override
     public String toString() {
-        return null;
-        
+        String chain;
+        chain = getNom();
+        chain = chain + getCognom1();
+        chain = chain + getCognom2();
+        chain = chain + getNumSegSocial();
+        chain = chain + getNif();
+        chain = chain + getTelefon();
+        return chain;
     }
 }

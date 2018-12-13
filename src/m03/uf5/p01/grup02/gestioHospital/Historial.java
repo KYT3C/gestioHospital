@@ -16,8 +16,8 @@ public class Historial {
     
     public Historial(Pacient pacient){
         codi = numHistorial++;
-        visita = new ArrayList<>();
         this.pacient = pacient;
+        visita = new ArrayList<>();
     }
     
     public int getCodi() {
@@ -36,7 +36,12 @@ public class Historial {
     
     @Override
     public String toString() {
-        return null;
-        
+        String chain;
+        chain = Integer.toString(codi);
+        chain = chain + ",";
+        chain = chain + pacient.toString();
+        chain = chain + ",";
+        chain = chain + visita.toString();
+        return chain;
     }
 }
