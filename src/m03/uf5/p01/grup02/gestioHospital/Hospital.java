@@ -81,7 +81,7 @@ public class Hospital {
     
     public Metge buscarMetgeNumSeg(String SegSoc){
         for(Metge m: metges)
-            if(m.getNumSegSocial() == SegSoc)
+            if(m.getNumSegSocial().equals(SegSoc))
                 return m;
         return null;
     }

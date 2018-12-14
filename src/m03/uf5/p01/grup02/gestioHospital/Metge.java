@@ -48,36 +48,4 @@ public class Metge extends Persona {
         chain = chain + getCodiCompteCorrent();
         return chain;
     }
-
-    /*@Override
-   public String toString(){
-       Scanner keyboard = new Scanner(System.in);
-        int option;
-        
-        System.out.println("¿Por que método quieres encontrar al médico?");
-        System.out.println("");
-        System.out.println("1. NIF");
-        System.out.println("2. NSS");
-        System.out.println("3. NE");
-        
-        do{
-            System.out.print("Selecciona una opción : ");
-            option = keyboard.nextInt();
-            System.out.println("");
-            
-            if(option == 1){
-                System.out.println("Me cago en to");
-            }
-            if(option == 2){
-            
-            }
-            if(option == 3){
-            
-            }
-            if(option == 4){
-                System.out.println("Cerrando sesión...");
-            }
-        }while(option != 4);
-        return null;
-   }*/
 }
