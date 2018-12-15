@@ -8,8 +8,8 @@ public class Pacient extends Persona {
     public static int numHistorial = 0;
     Historial historial;
     
-    public Pacient(String nom, String cognom1, String cognom2, String numSegSocial, String nif, String telefon) {
-        super(nom, cognom1, cognom2, numSegSocial, nif, telefon);
+    public Pacient(String nom, String cognom1, String cognom2, String numSegSocial, String nif, String telefon, Adreca adreca) {
+        super(nom, cognom1, cognom2, numSegSocial, nif, telefon, adreca);
         this.historial = new Historial(this);
     }
     

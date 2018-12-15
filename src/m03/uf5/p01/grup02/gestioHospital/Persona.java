@@ -12,14 +12,16 @@ public abstract class Persona {
     private final String numSegSocial;
     private final String nif;
     private final String telefon;
+    private final Adreca adreca;
 
-    public Persona(String nom, String cognom1, String cognom2, String numSegSocial, String nif, String telefon) {
+    public Persona(String nom, String cognom1, String cognom2, String numSegSocial, String nif, String telefon, Adreca adreca) {
         this.nom = nom;
         this.cognom1 = cognom1;
         this.cognom2 = cognom2;
         this.numSegSocial = numSegSocial;
         this.nif = nif;
         this.telefon = telefon;
+        this.adreca = adreca;
     }
 
     public String getNom() {
@@ -46,4 +48,7 @@ public abstract class Persona {
         return telefon;
     }
    
+    public Adreca getAdreca(){
+        return adreca;
+    }
 }
