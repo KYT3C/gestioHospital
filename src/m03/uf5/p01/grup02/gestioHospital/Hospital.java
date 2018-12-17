@@ -14,13 +14,13 @@ public class Hospital {
     ArrayList<Historial> historials;
     Adreca adreca;
     
-    public Hospital(String nom, String adreca){
+    public Hospital(String nom, Adreca adreca){
         this.nom = nom;
         pacients = new ArrayList<>();
         metges = new ArrayList<>();
         malalties = new ArrayList<>();
         historials = new ArrayList<>();
-        this.adreca = new Adreca();
+        this.adreca = adreca;
     }
     
     public void afegirPacient(Pacient pacient){
