@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class GestioHospital {
 
-    static Hospital hospital;
+    static Hospital h;
     public static void main(String[] args) {
         
         Scanner keyboard = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class GestioHospital {
             else if (option == 2) {
 
                 //Comprueba si el nombre solo contiene letras.
-                String nombre = "Gonzalo3";
+                String nombre = "";
 
                 System.out.println("Ha seleccionat nou pacient");
                 System.out.println("");
@@ -58,6 +58,38 @@ public class GestioHospital {
 
                 System.out.println("Ha seleccionat mostrar pacient");
                 System.out.println("");
+                
+                System.out.println("Amb quina identificació vols buscar al pacient?");
+                System.out.println("");
+                System.out.println("1. NIF");
+                System.out.println("2. NSS");
+                System.out.println("3. CH");
+
+                do {
+                    String buscar;
+                    System.out.print("Selecciona una opció: ");
+                    option = keyboard.nextInt();
+                    System.out.println("");
+
+                    if (option == 1) {
+                        System.out.print("Introdueix el NIF del pacient: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarPacientNif(buscar);
+                    }
+                    if (option == 2) {
+                        System.out.print("Introdueix el NSS del pacient: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarPacientNumSeg(buscar);
+                    }
+                    if (option == 3) {
+                        System.out.print("Introdueix el NE del pacient: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarPacientCodiHistorial(Integer.parseInt(buscar));
+                    }
+                    if (option == 4) {
+                        System.out.println("Tancant la sessió...");
+                    }
+                } while (option != 4);
 
             } //Opción mstrar un médico.
             else if (option == 4) {
@@ -65,30 +97,33 @@ public class GestioHospital {
                 System.out.println("Ha seleccionat mostrar metge");
                 System.out.println("");
 
-                int metodeBusqueda;
-
-                System.out.println("¿Por que método quieres encontrar al médico?");
+                System.out.println("Amb quina identificació vols buscar al metge?");
                 System.out.println("");
                 System.out.println("1. NIF");
                 System.out.println("2. NSS");
                 System.out.println("3. NE");
 
                 do {
-                    System.out.print("Selecciona una opción : ");
+                    String buscar;
+                    System.out.print("Selecciona una opció: ");
                     option = keyboard.nextInt();
                     System.out.println("");
-                    
+
                     if (option == 1) {
                         String buscar = null;
                     }
                     if (option == 2) {
-
+                        System.out.print("Introdueix el NSS del metge: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarMetgeNumSeg(buscar);
                     }
                     if (option == 3) {
-
+                        System.out.print("Introdueix el NE del metge: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarMetgeNumEmpleat(buscar);
                     }
                     if (option == 4) {
-                        System.out.println("Cerrando sesión...");
+                        System.out.println("Tancant la sessió...");
                     }
                 } while (option != 4);
 
@@ -125,11 +160,11 @@ public class GestioHospital {
     }
 
     public static void creaHospital(){
-        hospital = new Hospital("Hospital General", new Adreca("Terrassa",8228,"C/ Baivén", 34,"0ª","1ª"));
-        hospital.afegirMalaltia(new Malaltia("Refredat", false, "Sopa y mocadors", 5));
-        hospital.afegirMalaltia(new Malaltia("Grip", true, "Antigrip PlusUltra", 15));
-        hospital.afegirMalaltia(new Malaltia("Insomni", false, "Dormidina", 3));
+        h = new Hospital("Hospital General", new Adreca("Terrassa",8228,"C/ Baivén", 34,"0ª","1ª"));
+        h.afegirMalaltia(new Malaltia("Refredat", false, "Sopa y mocadors", 5));
+        h.afegirMalaltia(new Malaltia("Grip", true, "Antigrip PlusUltra", 15));
+        h.afegirMalaltia(new Malaltia("Insomni", false, "Dormidina", 3));
         
-        hospital.afegirMetge(new Metge("Ignacio","Verde","Pistacho", "40 12345678 42", "45932905L", null,null));
+        h.afegirMetge(new Metge("Ignacio","Verde","Pistacho", "40 12345678 42", "45932905L", "905236245",new Adreca("Terrassa",8228,"C/ Cardo", 10,"1º","3ª")));
     }
 }
