@@ -13,6 +13,8 @@ public class GestioHospital {
     static Hospital h;
     public static void main(String[] args) {
         
+        creaHospital();
+        
         Scanner keyboard = new Scanner(System.in);
 
         int option = 0;
@@ -66,25 +68,27 @@ public class GestioHospital {
                 System.out.println("3. CH");
 
                 do {
-                    String buscar;
                     System.out.print("Selecciona una opció: ");
                     option = keyboard.nextInt();
                     System.out.println("");
 
                     if (option == 1) {
+                        String buscar;
                         System.out.print("Introdueix el NIF del pacient: ");
                         buscar = keyboard.nextLine();
                         h.buscarPacientNif(buscar);
                     }
                     if (option == 2) {
+                        String buscar;
                         System.out.print("Introdueix el NSS del pacient: ");
                         buscar = keyboard.nextLine();
                         h.buscarPacientNumSeg(buscar);
                     }
                     if (option == 3) {
-                        System.out.print("Introdueix el NE del pacient: ");
-                        buscar = keyboard.nextLine();
-                        h.buscarPacientCodiHistorial(Integer.parseInt(buscar));
+                        int buscar;
+                        System.out.print("Introdueix el CH del pacient: ");
+                        buscar = keyboard.nextInt();
+                        h.buscarPacientCodiHistorial(buscar);
                     }
                     if (option == 4) {
                         System.out.println("Tancant la sessió...");
@@ -104,22 +108,26 @@ public class GestioHospital {
                 System.out.println("3. NE");
 
                 do {
-                    String buscar;
                     System.out.print("Selecciona una opció: ");
                     option = keyboard.nextInt();
                     System.out.println("");
 
                     if (option == 1) {
-                        String buscar = null;
+                        String buscar;
+                        System.out.print("Introdueix el NIF del metge: ");
+                        buscar = keyboard.nextLine();
+                        h.bucarMetgeNif(buscar);
                     }
                     if (option == 2) {
+                        String buscar;
                         System.out.print("Introdueix el NSS del metge: ");
                         buscar = keyboard.nextLine();
                         h.buscarMetgeNumSeg(buscar);
                     }
                     if (option == 3) {
+                        int buscar;
                         System.out.print("Introdueix el NE del metge: ");
-                        buscar = keyboard.nextLine();
+                        buscar = keyboard.nextInt();
                         h.buscarMetgeNumEmpleat(buscar);
                     }
                     if (option == 4) {
@@ -160,11 +168,19 @@ public class GestioHospital {
     }
 
     public static void creaHospital(){
-        h = new Hospital("Hospital General", new Adreca("Terrassa",8228,"C/ Baivén", 34,"0ª","1ª"));
+        h = new Hospital("Hospital General", new Adreca("Terrassa",8228,"C/ Baivén", 34,"-","-"));
         h.afegirMalaltia(new Malaltia("Refredat", false, "Sopa y mocadors", 5));
         h.afegirMalaltia(new Malaltia("Grip", true, "Antigrip PlusUltra", 15));
         h.afegirMalaltia(new Malaltia("Insomni", false, "Dormidina", 3));
         
         h.afegirMetge(new Metge("Ignacio","Verde","Pistacho", "40 12345678 42", "45932905L", "905236245",new Adreca("Terrassa",8228,"C/ Cardo", 10,"1º","3ª")));
+        h.afegirMetge(new Metge("Patricia","Estrella","Calamarda", "20 18372946 50", "45226855T", "645398256",new Adreca("Barcelona",8123,"C/ Martín", 3,"-","-")));
+        h.afegirMetge(new Metge("Mario","Caballo","Tejas", "15 98765432 83", "44656565H", "655321654",new Adreca("Sabadell",8224,"C/ Rábada", 6,"2º","1ª")));
+        
+        h.afegirPacient(new Pacient("Maria","Vazquez", "Escabeche", "32 56481379 02", "42159785A", "956363154", new Adreca("Terrassa", 8228,"C/ Teleñeco", 103, "2º", "4ª")));
+        h.afegirPacient(new Pacient("Eugenio","Caraca", "Varana", "21 45632198 55", "46323251D", "653215843", new Adreca("Terrassa", 8228,"C/ Vasquez", 7, "-", "-")));
+        h.afegirPacient(new Pacient("Aitor","Tilla", "Buena", "11 74185236 42", "43561532S", "651856493", new Adreca("Terrassa", 8228,"C/ Matinada", 4, "1º", "1ª")));
+        
+        h.crearVisita(h.buscarPacientNif("42159785A"), h.bucarMetgeNif("45932905L"), h.buscarMalaltiaCodi(0));
     }
 }
