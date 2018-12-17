@@ -10,9 +10,6 @@ import java.util.regex.Pattern;
  */
 public class GestioHospital {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         Scanner keyboard = new Scanner(System.in);
@@ -36,7 +33,7 @@ public class GestioHospital {
             else if (option == 2) {
 
                 //Comprueba si el nombre solo contiene letras.
-                String nombre = "Gonzalo3";
+                String nombre = "";
 
                 System.out.println("Ha seleccionat nou pacient");
                 System.out.println("");
@@ -60,6 +57,38 @@ public class GestioHospital {
 
                 System.out.println("Ha seleccionat mostrar pacient");
                 System.out.println("");
+                
+                System.out.println("Amb quina identificació vols buscar al pacient?");
+                System.out.println("");
+                System.out.println("1. NIF");
+                System.out.println("2. NSS");
+                System.out.println("3. CH");
+
+                do {
+                    String buscar;
+                    System.out.print("Selecciona una opció: ");
+                    option = keyboard.nextInt();
+                    System.out.println("");
+
+                    if (option == 1) {
+                        System.out.print("Introdueix el NIF del pacient: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarPacientNif(buscar);
+                    }
+                    if (option == 2) {
+                        System.out.print("Introdueix el NSS del pacient: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarPacientNumSeg(buscar);
+                    }
+                    if (option == 3) {
+                        System.out.print("Introdueix el NE del pacient: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarPacientCodiHistorial(buscar);
+                    }
+                    if (option == 4) {
+                        System.out.println("Tancant la sessió...");
+                    }
+                } while (option != 4);
 
             } //Opción mstrar un médico.
             else if (option == 4) {
@@ -67,32 +96,35 @@ public class GestioHospital {
                 System.out.println("Ha seleccionat mostrar metge");
                 System.out.println("");
 
-                int metodeBusqueda;
-
-                System.out.println("¿Por que método quieres encontrar al médico?");
+                System.out.println("Amb quina identificació vols buscar al metge?");
                 System.out.println("");
                 System.out.println("1. NIF");
                 System.out.println("2. NSS");
                 System.out.println("3. NE");
 
                 do {
-                    System.out.print("Selecciona una opción : ");
+                    String buscar;
+                    System.out.print("Selecciona una opció: ");
                     option = keyboard.nextInt();
                     System.out.println("");
-                    
+
                     if (option == 1) {
-                        String buscar = null;
-                        Hospital h = new Hospital("hola","adeu");
+                        System.out.print("Introdueix el NIF del metge: ");
+                        buscar = keyboard.nextLine();
                         h.bucarMetgeNif(buscar);
                     }
                     if (option == 2) {
-
+                        System.out.print("Introdueix el NSS del metge: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarMetgeNumSeg(buscar);
                     }
                     if (option == 3) {
-
+                        System.out.print("Introdueix el NE del metge: ");
+                        buscar = keyboard.nextLine();
+                        h.buscarMetgeNumEmpleat(buscar);
                     }
                     if (option == 4) {
-                        System.out.println("Cerrando sesión...");
+                        System.out.println("Tancant la sessió...");
                     }
                 } while (option != 4);
 
