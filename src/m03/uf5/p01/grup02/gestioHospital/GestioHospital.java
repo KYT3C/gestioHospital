@@ -65,24 +65,26 @@ public class GestioHospital {
                 System.out.println("3. CH");
 
                 do {
-                    String buscar;
                     System.out.print("Selecciona una opció: ");
                     option = keyboard.nextInt();
                     System.out.println("");
 
                     if (option == 1) {
+                        String buscar;
                         System.out.print("Introdueix el NIF del pacient: ");
                         buscar = keyboard.nextLine();
                         h.buscarPacientNif(buscar);
                     }
                     if (option == 2) {
+                        String buscar;
                         System.out.print("Introdueix el NSS del pacient: ");
                         buscar = keyboard.nextLine();
                         h.buscarPacientNumSeg(buscar);
                     }
                     if (option == 3) {
-                        System.out.print("Introdueix el NE del pacient: ");
-                        buscar = keyboard.nextLine();
+                        int buscar;
+                        System.out.print("Introdueix el CH del pacient: ");
+                        buscar = keyboard.nextInt();
                         h.buscarPacientCodiHistorial(buscar);
                     }
                     if (option == 4) {
@@ -103,24 +105,26 @@ public class GestioHospital {
                 System.out.println("3. NE");
 
                 do {
-                    String buscar;
                     System.out.print("Selecciona una opció: ");
                     option = keyboard.nextInt();
                     System.out.println("");
 
                     if (option == 1) {
+                        String buscar;
                         System.out.print("Introdueix el NIF del metge: ");
                         buscar = keyboard.nextLine();
                         h.bucarMetgeNif(buscar);
                     }
                     if (option == 2) {
+                        String buscar;
                         System.out.print("Introdueix el NSS del metge: ");
                         buscar = keyboard.nextLine();
                         h.buscarMetgeNumSeg(buscar);
                     }
                     if (option == 3) {
+                        int buscar;
                         System.out.print("Introdueix el NE del metge: ");
-                        buscar = keyboard.nextLine();
+                        buscar = keyboard.nextInt();
                         h.buscarMetgeNumEmpleat(buscar);
                     }
                     if (option == 4) {
