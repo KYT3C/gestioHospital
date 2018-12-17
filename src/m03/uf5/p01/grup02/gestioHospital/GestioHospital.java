@@ -10,11 +10,9 @@ import java.util.regex.Pattern;
  */
 public class GestioHospital {
 
-    /**
-     * @param args the command line arguments
-     */
+    static Hospital hospital;
     public static void main(String[] args) {
-
+        
         Scanner keyboard = new Scanner(System.in);
 
         int option = 0;
@@ -82,8 +80,6 @@ public class GestioHospital {
                     
                     if (option == 1) {
                         String buscar = null;
-                        Hospital h = new Hospital("hola","adeu");
-                        h.bucarMetgeNif(buscar);
                     }
                     if (option == 2) {
 
@@ -128,4 +124,12 @@ public class GestioHospital {
 
     }
 
+    public static void creaHospital(){
+        hospital = new Hospital("Hospital General", new Adreca("Terrassa",8228,"C/ Baivén", 34,"0ª","1ª"));
+        hospital.afegirMalaltia(new Malaltia("Refredat", false, "Sopa y mocadors", 5));
+        hospital.afegirMalaltia(new Malaltia("Grip", true, "Antigrip PlusUltra", 15));
+        hospital.afegirMalaltia(new Malaltia("Insomni", false, "Dormidina", 3));
+        
+        hospital.afegirMetge(new Metge("Ignacio","Verde","Pistacho", "40 12345678 42", "45932905L", null,null));
+    }
 }
