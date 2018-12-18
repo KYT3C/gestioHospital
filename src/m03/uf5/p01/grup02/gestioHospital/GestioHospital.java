@@ -255,4 +255,16 @@ public class GestioHospital {
         
         return nombre;
     }
+
+    private static void comprobarTelefon(String telefon) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void comprobarNif(String nif) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void comprobarNumSeguretatSocial(String numSeguretatSocial) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
