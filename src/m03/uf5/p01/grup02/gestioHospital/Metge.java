@@ -10,8 +10,11 @@ public class Metge extends Persona {
     private int salariMensual;
     private String codiCompteCorrent;
 
-    public Metge(String nom, String cognom1, String cognom2, String numSegSocial, String nif, String numEmpleat, String salariMensual, String codiCompteCorrent, String telefon, Adreca adreca) {
+    public Metge(String nom, String cognom1, String cognom2, String numSegSocial, String nif, int numEmpleat, int salariMensual, String codiCompteCorrent, String telefon, Adreca adreca) {
         super(nom, cognom1, cognom2, numSegSocial, nif, telefon, adreca);
+        this.salariMensual = salariMensual;
+        this.codiCompteCorrent = codiCompteCorrent;
+        this.numEmpleat = numEmpleat;
     }
 
     public int getNumEmpleat() {
