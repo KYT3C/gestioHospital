@@ -260,11 +260,46 @@ public class GestioHospital {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static void comprobarNif(String nif) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static boolean comprobarNif(String nif) {
+        char[] arrayLetrasNif = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
+        
+        try{
+        if(nif.length() == 9){
+            
+        String nifSinLetra = nif.substring(0, nif.length() - 1);
+        int nifSinLetraInt = Integer.parseInt(nifSinLetra);
+            
+        char letraNum = nif.charAt(8);
+        String letraNumString = Character.toString(letraNum);
+        int moduloNif = nifSinLetraInt % 23; 
+        
+        comprobarNombre(letraNumString);
+        
+                return arrayLetrasNif[moduloNif] == letraNum;
+
+        }else{
+            return false;
+        }
+        }catch(NumberFormatException e){
+            return false;
+        }
     }
 
-    private static void comprobarNumSeguretatSocial(String numSeguretatSocial) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static boolean comprobarNumSeguretatSocial(String numSeguretatSocial) {
+        try{
+        long num;
+        num = Integer.parseInt(numSeguretatSocial.substring(0,2));
+        if(!((num <=50 && num >= 1 ) || num == 53 || num == 66)){
+            return false;
+        }
+        long num2 = Integer.parseInt(numSeguretatSocial.substring(3,11));
+        
+        num2 = num2+num*100000000;
+        long lastNum = Integer.parseInt(numSeguretatSocial.substring(12,14));
+        
+        return num2%97 == lastNum;
+        }catch(Exception e){
+            return false;
+        }
     }
 }
