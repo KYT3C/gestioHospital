@@ -13,155 +13,162 @@ public class GestioHospital {
     static Hospital h;
 
     public static void main(String[] args) {
-
+        
+        int option;
         creaHospital();
 
         Scanner keyboard = new Scanner(System.in);
 
-        int option = 0;
-
-        menu();
-
         do {
+            option = 0;
+            menu();
             System.out.print("Introdueix una opció : ");
             option = keyboard.nextInt();
+            keyboard.nextLine();
             System.out.println("");
 
             //Opción para registrar la visita.
-            if (option == 1) {
-
-                System.out.println("Ha seleccionat registrar visita");
-                System.out.println("");
-
-            } //Opción para crear nuevo paciente.
-            else if (option == 2) {
-//nom, cognom1, cognom2, numSegSocial, nif, telefon, adreca
-                System.out.println("Per crear un nou pacient necessitem totes les següents dades: ");
-                System.out.print("Introdueïx el teu nom : ");
-                String nombre = keyboard.next();
-                comprobarNombre(nombre);
-                System.out.println("");
-                System.out.println("Introdueix el teu primer cognom : ");
-                String cognom1 = keyboard.next();
-                comprobarNombre(cognom1);
-                System.out.println("");
-                System.out.println("Introdueix el teu segon cognom : ");
-                String cognom2 = keyboard.next();
-                comprobarNombre(cognom2);
-                System.out.println("");
-                System.out.println("Introdueix el teu número de la seguretat social : ");
-                String numSeguretatSocial = keyboard.next();
-                comprobarNumSeguretatSocial(numSeguretatSocial);
-                System.out.println("");
-                System.out.println("Introdueix el teu NIF : ");
-                String nif = keyboard.next();
-                comprobarNif(nif);
-                System.out.println("");
-                System.out.println("Introdueix el teu telèfon : ");
-                String telefon = keyboard.next();
-                comprobarTelefon(telefon);
-                System.out.println("");
-                System.out.println("Introdueix la teva adreça : ");
-            } //Opción para mostrar un paciente.
-            else if (option == 3) {
-
-                do {
-                    System.out.println("Ha seleccionat mostrar pacient");
+            switch (option) {
+                //Opción para crear nuevo paciente.
+                case 1:
+                    System.out.println("Ha seleccionat registrar visita");
                     System.out.println("");
-
-                    System.out.println("Amb quina identificació vols buscar al pacient?");
+                    System.out.print("Introdueix el NIF del teu pacient: ");
+                    String pacient = keyboard.nextLine();
+                    System.out.print("Introdueix el teu NIF: ");
+                    String metge = keyboard.nextLine();
+                    System.out.print("Introdueix el codi de la malaltia: ");
+                    int malaltia = keyboard.nextInt();
                     System.out.println("");
-                    System.out.println("1. NIF");
-                    System.out.println("2. NSS");
-                    System.out.println("3. CH");
-
-                    System.out.print("Selecciona una opció: ");
-                    option = keyboard.nextInt();
-                    keyboard.nextLine();
+                    h.crearVisita(h.buscarPacientNif(pacient), h.bucarMetgeNif(metge), h.buscarMalaltiaCodi(malaltia));
+                    break;
+                //Opción para mostrar un paciente.
+                case 2:
+                    //nom, cognom1, cognom2, numSegSocial, nif, telefon, adreca
+                    System.out.println("Per crear un nou pacient necessitem totes les següents dades: ");
+                    System.out.print("Introdueïx el teu nom : ");
+                    String nombre = keyboard.next();
+                    comprobarNombre(nombre);
                     System.out.println("");
-
-                    if (option == 1) {
-                        String buscar;
-                        System.out.print("Introdueix el NIF del pacient: ");
-                        buscar = keyboard.nextLine();
-                        Pacient p = h.buscarPacientNif(buscar);
-                        printPacient(p);
-                    }
-                    if (option == 2) {
-                        String buscar;
-                        System.out.print("Introdueix el NSS del pacient: ");
-                        buscar = keyboard.nextLine();
-                        Pacient p = h.buscarPacientNumSeg(buscar);
-                        printPacient(p);
-                    }
-                    if (option == 3) {
-                        int buscar;
-                        System.out.print("Introdueix el CH del pacient: ");
-                        buscar = keyboard.nextInt();
-                        Pacient p = h.buscarPacientCodiHistorial(buscar);
-                        printPacient(p);
-                    }
-                    if (option == 4) {
-                        System.out.println("Tancant la sessió...");
-                    }
-                } while (option != 4);
-
-            } //Opción mstrar un médico.
-            else if (option == 4) {
-
-                do {
-                    System.out.println("Ha seleccionat mostrar metge");
+                    System.out.println("Introdueix el teu primer cognom : ");
+                    String cognom1 = keyboard.next();
+                    comprobarNombre(cognom1);
                     System.out.println("");
-
-                    System.out.println("Amb quina identificació vols buscar al metge?");
+                    System.out.println("Introdueix el teu segon cognom : ");
+                    String cognom2 = keyboard.next();
+                    comprobarNombre(cognom2);
                     System.out.println("");
-                    System.out.println("1. NIF");
-                    System.out.println("2. NSS");
-                    System.out.println("3. NE");
-
-                    System.out.print("Selecciona una opció: ");
-                    option = keyboard.nextInt();
-                    keyboard.nextLine();
+                    System.out.println("Introdueix el teu número de la seguretat social : ");
+                    String numSeguretatSocial = keyboard.next();
+                    comprobarNumSeguretatSocial(numSeguretatSocial);
                     System.out.println("");
+                    System.out.println("Introdueix el teu NIF : ");
+                    String nif = keyboard.next();
+                    comprobarNif(nif);
+                    System.out.println("");
+                    System.out.println("Introdueix el teu telèfon : ");
+                    String telefon = keyboard.next();
+                    comprobarTelefon(telefon);
+                    System.out.println("");
+                    System.out.println("Introdueix la teva adreça : ");
+                    break;
+                //Opción mstrar un médico.
+                case 3:
+                    do {
+                        System.out.println("Ha seleccionat mostrar pacient");
+                        System.out.println("");
 
-                    if (option == 1) {
-                        String buscar;
-                        System.out.print("Introdueix el NIF del metge: ");
-                        buscar = keyboard.nextLine();
-                        Metge m = h.bucarMetgeNif(buscar);
-                        printMetge(m);
-                    }
-                    if (option == 2) {
-                        String buscar;
-                        System.out.print("Introdueix el NSS del metge: ");
-                        buscar = keyboard.nextLine();
-                        Metge m = h.buscarMetgeNumSeg(buscar);
-                        printMetge(m);
-                    }
-                    if (option == 3) {
-                        int buscar;
-                        System.out.print("Introdueix el NE del metge: ");
-                        buscar = keyboard.nextInt();
-                        Metge m = h.buscarMetgeNumEmpleat(buscar);
-                        printMetge(m);
-                    }
-                    if (option == 4) {
-                        System.out.println("Tancant la sessió...");
-                    }
-                } while (option != 4);
+                        System.out.println("Amb quina identificació vols buscar al pacient?");
+                        System.out.println("");
+                        System.out.println("1. NIF");
+                        System.out.println("2. NSS");
+                        System.out.println("3. CH");
 
-            } //Opción para ver el historial.
-            else if (option == 5) {
+                        System.out.print("Selecciona una opció: ");
+                        option = keyboard.nextInt();
+                        keyboard.nextLine();
+                        System.out.println("");
 
-                System.out.println("Ha seleccionat veure historial");
-                System.out.println("");
+                        if (option == 1) {
+                            String buscar;
+                            System.out.print("Introdueix el NIF del pacient: ");
+                            buscar = keyboard.nextLine();
+                            Pacient p = h.buscarPacientNif(buscar);
+                            printPacient(p);
+                        }
+                        if (option == 2) {
+                            String buscar;
+                            System.out.print("Introdueix el NSS del pacient: ");
+                            buscar = keyboard.nextLine();
+                            Pacient p = h.buscarPacientNumSeg(buscar);
+                            printPacient(p);
+                        }
+                        if (option == 3) {
+                            int buscar;
+                            System.out.print("Introdueix el CH del pacient: ");
+                            buscar = keyboard.nextInt();
+                            Pacient p = h.buscarPacientCodiHistorial(buscar);
+                            printPacient(p);
+                        }
+                        if (option == 4) {
+                            System.out.println("Tancant la sessió...");
+                        }
+                    } while (option != 4);
+                    break;
+                //Opción para ver el historial.
+                case 4:
+                    do {
+                        System.out.println("Ha seleccionat mostrar metge");
+                        System.out.println("");
 
-            } //Opción para salir.
-            else if (option == 6) {
+                        System.out.println("Amb quina identificació vols buscar al metge?");
+                        System.out.println("");
+                        System.out.println("1. NIF");
+                        System.out.println("2. NSS");
+                        System.out.println("3. NE");
 
-                System.out.println("Ha seleccionat sortir");
-                System.out.println("");
+                        System.out.print("Selecciona una opció: ");
+                        option = keyboard.nextInt();
+                        keyboard.nextLine();
+                        System.out.println("");
 
+                        if (option == 1) {
+                            String buscar;
+                            System.out.print("Introdueix el NIF del metge: ");
+                            buscar = keyboard.nextLine();
+                            Metge m = h.bucarMetgeNif(buscar);
+                            printMetge(m);
+                        }
+                        if (option == 2) {
+                            String buscar;
+                            System.out.print("Introdueix el NSS del metge: ");
+                            buscar = keyboard.nextLine();
+                            Metge m = h.buscarMetgeNumSeg(buscar);
+                            printMetge(m);
+                        }
+                        if (option == 3) {
+                            int buscar;
+                            System.out.print("Introdueix el NE del metge: ");
+                            buscar = keyboard.nextInt();
+                            Metge m = h.buscarMetgeNumEmpleat(buscar);
+                            printMetge(m);
+                        }
+                        if (option == 4) {
+                            System.out.println("Tancant la sessió...");
+                        }
+                    } while (option != 4);
+                    break;
+                //Opción para salir.
+                case 5:
+                    System.out.println("Ha seleccionat veure historial");
+                    System.out.println("");
+                    break;
+                case 6:
+                    System.out.println("Ha seleccionat sortir");
+                    System.out.println("");
+                    break;
+                default:
+                    break;
             }
 
         } while (option != 6);
@@ -231,28 +238,28 @@ public class GestioHospital {
         h.afegirPacient(new Pacient("Eugenio", "Caraca", "Varana", "21 45632198 55", "46323251D", "653215843", new Adreca("Terrassa", 8228, "C/ Vasquez", 7, "-", "-")));
         h.afegirPacient(new Pacient("Aitor", "Tilla", "Buena", "11 74185236 42", "43561532S", "651856493", new Adreca("Terrassa", 8228, "C/ Matinada", 4, "1º", "1ª")));
 
-        h.crearVisita(h.buscarPacientNif("42159785A"), h.bucarMetgeNif("45932905L"), h.buscarMalaltiaCodi(0));
+        h.crearVisita(h.buscarPacientNif("42159785A"), h.bucarMetgeNif("45932905L"), h.buscarMalaltiaCodi(5));
     }
-    
-    private static String comprobarNombre(String nombre){
 
-                System.out.println("Ha seleccionat nou pacient");
-                System.out.println("");
+    private static String comprobarNombre(String nombre) {
 
-                try {
-                    CharSequence inputStr = nombre;
-                    Pattern pattern = Pattern.compile("^[a-zA-Z\\s]*$");
-                    Matcher matcher = pattern.matcher(inputStr);
+        System.out.println("Ha seleccionat nou pacient");
+        System.out.println("");
 
-                    if (matcher.matches()) {
-                        System.out.println("El nom s'ha introduït correctament");
-                    } else {
-                        throw new Exception("El nom que s'ha introduït no és vàlid");
-                    }
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-        
+        try {
+            CharSequence inputStr = nombre;
+            Pattern pattern = Pattern.compile("^[a-zA-Z\\s]*$");
+            Matcher matcher = pattern.matcher(inputStr);
+
+            if (matcher.matches()) {
+                System.out.println("El nom s'ha introduït correctament");
+            } else {
+                throw new Exception("El nom que s'ha introduït no és vàlid");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         return nombre;
     }
 
@@ -261,44 +268,44 @@ public class GestioHospital {
     }
 
     private static boolean comprobarNif(String nif) {
-        char[] arrayLetrasNif = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
-        
-        try{
-        if(nif.length() == 9){
-            
-        String nifSinLetra = nif.substring(0, nif.length() - 1);
-        int nifSinLetraInt = Integer.parseInt(nifSinLetra);
-            
-        char letraNum = nif.charAt(8);
-        String letraNumString = Character.toString(letraNum);
-        int moduloNif = nifSinLetraInt % 23; 
-        
-        comprobarNombre(letraNumString);
-        
+        char[] arrayLetrasNif = {'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
+
+        try {
+            if (nif.length() == 9) {
+
+                String nifSinLetra = nif.substring(0, nif.length() - 1);
+                int nifSinLetraInt = Integer.parseInt(nifSinLetra);
+
+                char letraNum = nif.charAt(8);
+                String letraNumString = Character.toString(letraNum);
+                int moduloNif = nifSinLetraInt % 23;
+
+                comprobarNombre(letraNumString);
+
                 return arrayLetrasNif[moduloNif] == letraNum;
 
-        }else{
-            return false;
-        }
-        }catch(NumberFormatException e){
+            } else {
+                return false;
+            }
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
     private static boolean comprobarNumSeguretatSocial(String numSeguretatSocial) {
-        try{
-        long num;
-        num = Integer.parseInt(numSeguretatSocial.substring(0,2));
-        if(!((num <=50 && num >= 1 ) || num == 53 || num == 66)){
-            return false;
-        }
-        long num2 = Integer.parseInt(numSeguretatSocial.substring(3,11));
-        
-        num2 = num2+num*100000000;
-        long lastNum = Integer.parseInt(numSeguretatSocial.substring(12,14));
-        
-        return num2%97 == lastNum;
-        }catch(Exception e){
+        try {
+            long num;
+            num = Integer.parseInt(numSeguretatSocial.substring(0, 2));
+            if (!((num <= 50 && num >= 1) || num == 53 || num == 66)) {
+                return false;
+            }
+            long num2 = Integer.parseInt(numSeguretatSocial.substring(3, 11));
+
+            num2 = num2 + num * 100000000;
+            long lastNum = Integer.parseInt(numSeguretatSocial.substring(12, 14));
+
+            return num2 % 97 == lastNum;
+        } catch (Exception e) {
             return false;
         }
     }
