@@ -11,68 +11,100 @@ import java.util.regex.Pattern;
 public class GestioHospital {
 
     static Hospital h;
+    static boolean valid;
 
     public static void main(String[] args) {
-        
+
         int option;
         creaHospital();
 
         Scanner keyboard = new Scanner(System.in);
 
         do {
-            option = 0;
             menu();
-            System.out.print("Introdueix una opció : ");
+            System.out.print("Introdueix una opció: ");
             option = keyboard.nextInt();
             keyboard.nextLine();
             System.out.println("");
 
-            //Opción para registrar la visita.
             switch (option) {
-                //Opción para crear nuevo paciente.
+                //Opción para registrar la visita.
                 case 1:
+                    String pacient,
+                     metge;
+                    int malaltia;
                     System.out.println("Ha seleccionat registrar visita");
                     System.out.println("");
-                    System.out.print("Introdueix el NIF del teu pacient: ");
-                    String pacient = keyboard.nextLine();
-                    System.out.print("Introdueix el teu NIF: ");
-                    String metge = keyboard.nextLine();
-                    System.out.print("Introdueix el codi de la malaltia: ");
-                    int malaltia = keyboard.nextInt();
+                    do {
+                        System.out.print("Introdueix el NIF del teu pacient: ");
+
+                        valid = comprobarNif(pacient = keyboard.nextLine());
+                    } while (valid != true);
+                    do {
+                        System.out.print("Introdueix el teu NIF: ");
+                        valid = comprobarNif(metge = keyboard.nextLine());
+                    } while (valid != true);
+                    do {
+                        System.out.print("Introdueix el codi de la malaltia: ");
+                        valid = h.buscarMalaltiaCodi(malaltia = keyboard.nextInt()) != null;
+                    } while (valid != true);
                     System.out.println("");
                     h.crearVisita(h.buscarPacientNif(pacient), h.bucarMetgeNif(metge), h.buscarMalaltiaCodi(malaltia));
+                    System.out.println("S'ha registrat la visita.");
+                    System.out.println("");
+
                     break;
-                //Opción para mostrar un paciente.
+                //Opción para crear nuevo paciente.
                 case 2:
                     //nom, cognom1, cognom2, numSegSocial, nif, telefon, adreca
                     System.out.println("Per crear un nou pacient necessitem totes les següents dades: ");
-                    System.out.print("Introdueïx el teu nom : ");
-                    String nombre = keyboard.next();
-                    comprobarNombre(nombre);
+
+                    do {
+                        System.out.print("Introdueïx el teu nom: ");
+                        String nombre = keyboard.nextLine();
+                        valid = comprobarNombre(nombre);
+                        System.out.println("");
+                    } while (valid != true);
+
+                    do {
+                        System.out.print("Introdueix el teu primer cognom: ");
+                        String cognom1 = keyboard.nextLine();
+                        valid = comprobarNombre(cognom1);
+                        System.out.println("");
+                    } while (valid != true);
+
+                    do {
+                        System.out.print("Introdueix el teu segon cognom: ");
+                        String cognom2 = keyboard.nextLine();
+                        valid = comprobarNombre(cognom2);
+                        System.out.println("");
+                    } while (valid != true);
+
+                    do {
+                        System.out.print("Introdueix el teu número de la seguretat social: ");
+                        String numSeguretatSocial = keyboard.nextLine();
+                        valid = comprobarNumSeguretatSocial(numSeguretatSocial);
+                        System.out.println("");
+                    } while (valid != true);
+
+                    do {
+                        System.out.print("Introdueix el teu NIF: ");
+                        String nif = keyboard.nextLine();
+                        valid = comprobarNif(nif);
+                        System.out.println("");
+                    } while (valid != true);
+
+                    do {
+                        System.out.print("Introdueix el teu telèfon: ");
+                        String telefon = keyboard.nextLine();
+                        comprobarTelefon(telefon);
+                        System.out.println("");
+                    } while (valid != true);
+
                     System.out.println("");
-                    System.out.println("Introdueix el teu primer cognom : ");
-                    String cognom1 = keyboard.next();
-                    comprobarNombre(cognom1);
-                    System.out.println("");
-                    System.out.println("Introdueix el teu segon cognom : ");
-                    String cognom2 = keyboard.next();
-                    comprobarNombre(cognom2);
-                    System.out.println("");
-                    System.out.println("Introdueix el teu número de la seguretat social : ");
-                    String numSeguretatSocial = keyboard.next();
-                    comprobarNumSeguretatSocial(numSeguretatSocial);
-                    System.out.println("");
-                    System.out.println("Introdueix el teu NIF : ");
-                    String nif = keyboard.next();
-                    comprobarNif(nif);
-                    System.out.println("");
-                    System.out.println("Introdueix el teu telèfon : ");
-                    String telefon = keyboard.next();
-                    comprobarTelefon(telefon);
-                    System.out.println("");
-                    System.out.println("Introdueix la teva adreça : ");
+                    System.out.print("Introdueix la teva adreça: ");
                     break;
-                //Opción mstrar un médico.
+                //Opción para mostrar un paciente.
                 case 3:
                     do {
                         System.out.println("Ha seleccionat mostrar pacient");
@@ -115,7 +147,7 @@ public class GestioHospital {
                         }
                     } while (option != 4);
                     break;
-                //Opción para ver el historial.
+                //Opción mstrar un médico.
                 case 4:
                     do {
                         System.out.println("Ha seleccionat mostrar metge");
@@ -158,11 +190,12 @@ public class GestioHospital {
                         }
                     } while (option != 4);
                     break;
-                //Opción para salir.
+                //Opción para ver el historial.
                 case 5:
                     System.out.println("Ha seleccionat veure historial");
                     System.out.println("");
                     break;
+                //Opción para salir.
                 case 6:
                     System.out.println("Ha seleccionat sortir");
                     System.out.println("");
@@ -241,26 +274,21 @@ public class GestioHospital {
         h.crearVisita(h.buscarPacientNif("42159785A"), h.bucarMetgeNif("45932905L"), h.buscarMalaltiaCodi(1));
     }
 
-    private static String comprobarNombre(String nombre) {
+    private static boolean comprobarNombre(String nombre) {
 
-        System.out.println("Ha seleccionat nou pacient");
         System.out.println("");
 
-        try {
-            CharSequence inputStr = nombre;
-            Pattern pattern = Pattern.compile("^[a-zA-Z\\s]*$");
-            Matcher matcher = pattern.matcher(inputStr);
+        CharSequence inputStr = nombre;
+        Pattern pattern = Pattern.compile("^[a-zA-Z\\s]*$");
+        Matcher matcher = pattern.matcher(inputStr);
 
-            if (matcher.matches()) {
-                System.out.println("El nom s'ha introduït correctament");
-            } else {
-                throw new Exception("El nom que s'ha introduït no és vàlid");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        if (matcher.matches()) {
+            System.out.println("El valor s'ha introduït correctament");
+            return true;
+        } else {
+            return false;
         }
 
-        return nombre;
     }
 
     private static void comprobarTelefon(String telefon) {
@@ -276,11 +304,9 @@ public class GestioHospital {
                 String nifSinLetra = nif.substring(0, nif.length() - 1);
                 int nifSinLetraInt = Integer.parseInt(nifSinLetra);
 
-                char letraNum = nif.charAt(8);
+                char letraNum = nif.toUpperCase().charAt(8);
                 String letraNumString = Character.toString(letraNum);
                 int moduloNif = nifSinLetraInt % 23;
-
-                comprobarNombre(letraNumString);
 
                 return arrayLetrasNif[moduloNif] == letraNum;
 
@@ -309,4 +335,5 @@ public class GestioHospital {
             return false;
         }
     }
+
 }
