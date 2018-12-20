@@ -14,7 +14,7 @@ public class GestioHospital {
         int option;
         creaHospital();
 
-        Scanner keyboard = new Scanner(System.in,"ISO-8859-1");
+        Scanner keyboard = new Scanner(System.in, "ISO-8859-1");
 
         do {
             menu();
@@ -49,26 +49,28 @@ public class GestioHospital {
                     keyboard.nextLine();
                     System.out.println("");
 
-                    if (optionPacient == 1) {
-                        do {
-                            System.out.print("Introdueix el NIF del pacient: ");
-                            valid = comprobarNif(pacientSt = keyboard.nextLine());
-                        } while (valid != true);
-                        pacient = h.buscarPacientNif(pacientSt);
-                    }
-                    if (optionPacient == 2) {
-                        do {
-                            System.out.print("Introdueix el NSS del pacient: ");
-                            valid = comprobarNumSeguretatSocial(pacientSt = keyboard.nextLine());
-                        } while (valid != true);
-                        pacient = h.buscarPacientNumSeg(pacientSt);
-                    }
-                    if (optionPacient == 3) {
-                        do {
-                            System.out.print("Introdueix el CH del pacient: ");
-                            valid = h.buscarPacientCodiHistorial(pacientCH = keyboard.nextInt()) != null;
-                        } while (valid != true);
-                        pacient = h.buscarPacientCodiHistorial(pacientCH);
+                    switch (optionPacient) {
+                        case 1:
+                            do {
+                                System.out.print("Introdueix el NIF del pacient: ");
+                                valid = comprobarNif(pacientSt = keyboard.nextLine());
+                            } while (valid != true);
+                            pacient = h.buscarPacientNif(pacientSt);
+                            break;
+                        case 2:
+                            do {
+                                System.out.print("Introdueix el NSS del pacient: ");
+                                valid = comprobarNumSeguretatSocial(pacientSt = keyboard.nextLine());
+                            } while (valid != true);
+                            pacient = h.buscarPacientNumSeg(pacientSt);
+                            break;
+                        case 3:
+                            do {
+                                System.out.print("Introdueix el CH del pacient: ");
+                                valid = h.buscarPacientCodiHistorial(pacientCH = keyboard.nextInt()) != null;
+                            } while (valid != true);
+                            pacient = h.buscarPacientCodiHistorial(pacientCH);
+                            break;
                     }
 
                     System.out.println("");
@@ -83,26 +85,28 @@ public class GestioHospital {
                     keyboard.nextLine();
                     System.out.println("");
 
-                    if (optionMetge == 1) {
-                        do {
-                            System.out.print("Introdueix el NIF del metge: ");
-                            valid = comprobarNif(metgeSt = keyboard.nextLine());
-                        } while (valid != true);
-                        metge = h.bucarMetgeNif(metgeSt);
-                    }
-                    if (optionMetge == 2) {
-                        do {
-                            System.out.print("Introdueix el NSS del metge: ");
-                            valid = comprobarNumSeguretatSocial(metgeSt = keyboard.nextLine());
-                        } while (valid != true);
-                        metge = h.buscarMetgeNumSeg(metgeSt);
-                    }
-                    if (optionMetge == 3) {
-                        do {
-                            System.out.print("Introdueix el CE del metge: ");
-                            valid = h.buscarMetgeNumEmpleat(metgeNE = keyboard.nextInt()) != null;
-                        } while (valid != true);
-                        metge = h.buscarMetgeNumEmpleat(metgeNE);
+                    switch (optionMetge) {
+                        case 1:
+                            do {
+                                System.out.print("Introdueix el NIF del metge: ");
+                                valid = comprobarNif(metgeSt = keyboard.nextLine());
+                            } while (valid != true);
+                            metge = h.bucarMetgeNif(metgeSt);
+                            break;
+                        case 2:
+                            do {
+                                System.out.print("Introdueix el NSS del metge: ");
+                                valid = comprobarNumSeguretatSocial(metgeSt = keyboard.nextLine());
+                            } while (valid != true);
+                            metge = h.buscarMetgeNumSeg(metgeSt);
+                            break;
+                        case 3:
+                            do {
+                                System.out.print("Introdueix el CE del metge: ");
+                                valid = h.buscarMetgeNumEmpleat(metgeNE = keyboard.nextInt()) != null;
+                            } while (valid != true);
+                            metge = h.buscarMetgeNumEmpleat(metgeNE);
+                            break;
                     }
 
                     System.out.println("");
@@ -364,7 +368,7 @@ public class GestioHospital {
         String poblacio, carrer, pis, porta;
         int codiPostal, bloc;
 
-        Scanner keyboard = new Scanner(System.in,"ISO-8859-1");
+        Scanner keyboard = new Scanner(System.in, "ISO-8859-1");
 
         System.out.println("Creació de l'adreça");
         System.out.println("");
@@ -398,7 +402,7 @@ public class GestioHospital {
     private static boolean comprobarNombre(String nombre) {
 
         CharSequence inputStr = nombre;
-        
+
         Pattern pattern = Pattern.compile("^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑçÇ\\s]*$");
         Matcher matcher = pattern.matcher(inputStr);
 
