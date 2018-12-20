@@ -1,6 +1,5 @@
 package m03.uf5.p01.grup02.gestioHospital;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,9 +18,8 @@ public class GestioHospital {
 
         do {
             menu();
-            System.out.print("Introdueix una opció: ");
 
-            option = obtenNumeroTeclado(keyboard);
+            option = obtenNumeroTeclado(keyboard, "Introdueix una opció: ");
             System.out.println("");
 
             switch (option) {
@@ -45,8 +43,7 @@ public class GestioHospital {
                     System.out.println("2. NSS");
                     System.out.println("3. Codi Historial");
 
-                    System.out.print("Selecciona una opció: ");
-                    int optionPacient = obtenNumeroTeclado(keyboard);
+                    int optionPacient = obtenNumeroTeclado(keyboard, "Selecciona una opció: ");
                     System.out.println("");
 
                     switch (optionPacient) {
@@ -66,8 +63,7 @@ public class GestioHospital {
                             break;
                         case 3:
                             do {
-                                System.out.print("Introdueix el Codi Historial del pacient: ");
-                                valid = h.buscarPacientCodiHistorial(pacientCH = obtenNumeroTeclado(keyboard)) != null;
+                                valid = h.buscarPacientCodiHistorial(pacientCH = obtenNumeroTeclado(keyboard, "Introdueix el Codi Historial del pacient: ")) != null;
                             } while (valid != true);
                             pacient = h.buscarPacientCodiHistorial(pacientCH);
                             break;
@@ -80,8 +76,8 @@ public class GestioHospital {
                     System.out.println("2. NSS");
                     System.out.println("3. Número empleat");
 
-                    System.out.print("Selecciona una opció: ");
-                    int optionMetge = obtenNumeroTeclado(keyboard);;
+                    int optionMetge = obtenNumeroTeclado(keyboard, "Selecciona una opció: ");
+                    ;
                     System.out.println("");
 
                     switch (optionMetge) {
@@ -101,8 +97,7 @@ public class GestioHospital {
                             break;
                         case 3:
                             do {
-                                System.out.print("Introdueix el CE del metge: ");
-                                valid = h.buscarMetgeNumEmpleat(metgeNE = obtenNumeroTeclado(keyboard)) != null;
+                                valid = h.buscarMetgeNumEmpleat(metgeNE = obtenNumeroTeclado(keyboard, "Introdueix el CE del metge: ")) != null;
                             } while (valid != true);
                             metge = h.buscarMetgeNumEmpleat(metgeNE);
                             break;
@@ -110,8 +105,7 @@ public class GestioHospital {
 
                     System.out.println("");
                     do {
-                        System.out.print("Introdueix el codi de la malaltia: ");
-                        valid = h.buscarMalaltiaCodi(malaltiaInt = obtenNumeroTeclado(keyboard)) != null;
+                        valid = h.buscarMalaltiaCodi(malaltiaInt = obtenNumeroTeclado(keyboard, "Introdueix el codi de la malaltia: ")) != null;
                     } while (valid != true);
                     malaltia = h.buscarMalaltiaCodi(malaltiaInt);
 
@@ -166,9 +160,10 @@ public class GestioHospital {
                     do {
                         System.out.print("Introdueix el telèfon: ");
                         telefon = keyboard.nextLine();
-                        comprobarTelefon(telefon);
+                        valid = comprobarTelefon(telefon);
                     } while (valid != true);
 
+                    System.out.println("");
                     Adreca adreca = creaAdreca();
 
                     h.afegirPacient(new Pacient(nombre, cognom1, cognom2, numSeguretatSocial, nif, telefon, adreca));
@@ -185,8 +180,8 @@ public class GestioHospital {
                     System.out.println("2. NSS");
                     System.out.println("3. Codi Historial");
 
-                    System.out.print("Selecciona una opció: ");
-                    option = obtenNumeroTeclado(keyboard);;
+                    option = obtenNumeroTeclado(keyboard, "Selecciona una opció: ");
+                    ;
                     System.out.println("");
 
                     switch (option) {
@@ -208,8 +203,7 @@ public class GestioHospital {
                         }
                         case 3: {
                             int buscar;
-                            System.out.print("Introdueix el CH del pacient: ");
-                            buscar = obtenNumeroTeclado(keyboard);
+                            buscar = obtenNumeroTeclado(keyboard, "Introdueix el CH del pacient: ");
                             Pacient p = h.buscarPacientCodiHistorial(buscar);
                             System.out.println(p.toString());
                             break;
@@ -227,8 +221,8 @@ public class GestioHospital {
                     System.out.println("2. NSS");
                     System.out.println("3. Número empleat");
 
-                    System.out.print("Selecciona una opció: ");
-                    option = obtenNumeroTeclado(keyboard);;
+                    option = obtenNumeroTeclado(keyboard, "Selecciona una opció: ");
+                    ;
                     System.out.println("");
 
                     switch (option) {
@@ -250,8 +244,7 @@ public class GestioHospital {
                         }
                         case 3: {
                             int buscar;
-                            System.out.print("Introdueix el NE del metge: ");
-                            buscar = obtenNumeroTeclado(keyboard);
+                            buscar = obtenNumeroTeclado(keyboard, "Introdueix el NE del metge: ");
                             Metge m = h.buscarMetgeNumEmpleat(buscar);
                             System.out.println(m.toString());
                             break;
@@ -329,23 +322,29 @@ public class GestioHospital {
         System.out.println("Creació de l'adreça");
         System.out.println("");
 
-        System.out.print("Introdueix la població: ");
-        poblacio = keyboard.nextLine();
+        do {
+            System.out.print("Introdueix la població: ");
+            valid = comprobarNombre(poblacio = keyboard.nextLine());
+        } while (valid != true);
 
-        System.out.print("Introdueix el codi postal: ");
-        codiPostal = obtenNumeroTeclado(keyboard);
+        codiPostal = obtenNumeroTeclado(keyboard, "Introdueix el codi postal: ");
 
-        System.out.print("Introdueix el carrer: ");
-        carrer = keyboard.nextLine();
+        do {
+            System.out.print("Introdueix el carrer: ");
+            valid = comprobarNombre(carrer = keyboard.nextLine());
+        } while (valid != true);
+        
+        bloc = obtenNumeroTeclado(keyboard, "Introdueix el bloc: ");
 
-        System.out.print("Introdueix el bloc: ");
-        bloc = obtenNumeroTeclado(keyboard);
+        do {
+            System.out.print("Introdueix el pis: ");
+            valid = comprobarNombre(pis = keyboard.nextLine());
+        } while (valid != true);
 
-        System.out.print("Introdueix el pis: ");
-        pis = keyboard.nextLine();
-
-        System.out.print("Introdueix la porta: ");
-        porta = keyboard.nextLine();
+        do {
+            System.out.print("Introdueix la porta: ");
+            valid = comprobarNombre(porta = keyboard.nextLine());
+        } while (valid != true);
 
         adreca1 = new Adreca(poblacio, codiPostal, carrer, bloc, pis, porta);
 
@@ -353,15 +352,16 @@ public class GestioHospital {
         return adreca1;
     }
 
-    private static int obtenNumeroTeclado(Scanner keyboard) {
-        boolean valido = true;
+    private static int obtenNumeroTeclado(Scanner keyboard, String message) {
         int cod;
+        System.out.print(message);
         while (true) {
             try {
                 cod = Integer.parseInt(keyboard.nextLine());
                 return cod;
             } catch (NumberFormatException e) {
                 System.out.println("El número no es valido");
+                System.out.print(message);
             }
         }
     }
@@ -418,7 +418,7 @@ public class GestioHospital {
             long lastNum = Integer.parseInt(numSeguretatSocial.substring(12, 14));
 
             return num2 % 97 == lastNum;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
             return false;
         }
     }
