@@ -4,10 +4,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author K Y T 3 C
- */
 public class GestioHospital {
 
     static Hospital h;
@@ -30,26 +26,95 @@ public class GestioHospital {
             switch (option) {
                 //Opción para registrar la visita.
                 case 1:
-                    String pacient,
-                     metge;
-                    int malaltia;
+                    Pacient pacient = null;
+                    Metge metge = null;
+                    Malaltia malaltia;
+                    String pacientSt,
+                     metgeSt;
+                    int pacientCH,
+                     metgeNE,
+                     malaltiaInt;
+
                     System.out.println("Ha seleccionat registrar visita");
                     System.out.println("");
-                    do {
-                        System.out.print("Introdueix el NIF del teu pacient: ");
 
-                        valid = comprobarNif(pacient = keyboard.nextLine());
-                    } while (valid != true);
-                    do {
-                        System.out.print("Introdueix el teu NIF: ");
-                        valid = comprobarNif(metge = keyboard.nextLine());
-                    } while (valid != true);
+                    System.out.println("Amb quina identificació vols buscar al pacient?");
+                    System.out.println("");
+                    System.out.println("1. NIF");
+                    System.out.println("2. NSS");
+                    System.out.println("3. CH");
+
+                    System.out.print("Selecciona una opció: ");
+                    int optionPacient = keyboard.nextInt();
+                    keyboard.nextLine();
+                    System.out.println("");
+
+                    if (optionPacient == 1) {
+                        do {
+                            System.out.print("Introdueix el NIF del teu pacient: ");
+                            valid = comprobarNif(pacientSt = keyboard.nextLine());
+                        } while (valid != true);
+                        pacient = h.buscarPacientNif(pacientSt);
+                    }
+                    if (optionPacient == 2) {
+                        do {
+                            System.out.print("Introdueix el NSS del teu pacient: ");
+                            valid = comprobarNumSeguretatSocial(pacientSt = keyboard.nextLine());
+                        } while (valid != true);
+                        pacient = h.buscarPacientNumSeg(pacientSt);
+                    }
+                    if (optionPacient == 3) {
+                        do {
+                            System.out.print("Introdueix el CH del teu pacient: ");
+                            valid = h.buscarPacientCodiHistorial(pacientCH = keyboard.nextInt()) != null;
+                        } while (valid != true);
+                        pacient = h.buscarPacientCodiHistorial(pacientCH);
+                    }
+
+                    System.out.println("");
+                    System.out.println("Amb quina identificació vols buscar al metge?");
+                    System.out.println("");
+                    System.out.println("1. NIF");
+                    System.out.println("2. NSS");
+                    System.out.println("3. NE");
+
+                    System.out.print("Selecciona una opció: ");
+                    int optionMetge = keyboard.nextInt();
+                    keyboard.nextLine();
+                    System.out.println("");
+
+                    if (optionMetge == 1) {
+                        do {
+                            System.out.print("Introdueix el teu NIF: ");
+                            valid = comprobarNif(metgeSt = keyboard.nextLine());
+                        } while (valid != true);
+                        metge = h.bucarMetgeNif(metgeSt);
+                    }
+                    if (optionMetge == 2) {
+                        do {
+                            System.out.print("Introdueix el teu NSS: ");
+                            valid = comprobarNumSeguretatSocial(metgeSt = keyboard.nextLine());
+                        } while (valid != true);
+                        metge = h.buscarMetgeNumSeg(metgeSt);
+                    }
+                    if (optionMetge == 3) {
+                        do {
+                            System.out.print("Introdueix el teu CE: ");
+                            valid = h.buscarMetgeNumEmpleat(metgeNE = keyboard.nextInt()) != null;
+                        } while (valid != true);
+                        metge = h.buscarMetgeNumEmpleat(metgeNE);
+                    }
+
+                    System.out.println("");
                     do {
                         System.out.print("Introdueix el codi de la malaltia: ");
-                        valid = h.buscarMalaltiaCodi(malaltia = keyboard.nextInt()) != null;
+                        valid = h.buscarMalaltiaCodi(malaltiaInt = keyboard.nextInt()) != null;
                     } while (valid != true);
+                    malaltia = h.buscarMalaltiaCodi(malaltiaInt);
+
                     System.out.println("");
-                    h.crearVisita(h.buscarPacientNif(pacient), h.bucarMetgeNif(metge), h.buscarMalaltiaCodi(malaltia));
+
+                    h.crearVisita(pacient, metge, malaltia);
                     System.out.println("S'ha registrat la visita.");
                     System.out.println("");
 
