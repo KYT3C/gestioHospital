@@ -90,6 +90,16 @@ public class Hospital {
         return null;
     }
     
+    //Buscar Historial
+    
+    public Historial buscarHistorial(int codi){
+        for(Historial h: historials){
+            if(h.codi == codi)
+                return h;
+        }
+        return null;
+    }
+    
     //Crear visita
     /**
      * 

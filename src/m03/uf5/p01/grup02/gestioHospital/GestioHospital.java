@@ -279,7 +279,21 @@ public class GestioHospital {
                 //Opción para ver el historial.
                 case 6:
                     System.out.println("Ha seleccionat veure historial");
-                    System.out.println("");
+                    System.out.print("Inserta un codi d'historial: ");
+                    int codi = -1;
+                    while(codi == -1){
+                    try{
+                    codi = Integer.parseInt(keyboard.nextLine());
+                    Historial hh = h.buscarHistorial(codi);
+                    if(hh != null)
+                            System.out.println(hh.toString());
+                    else
+                        codi = -1;
+                    }catch(NumberFormatException e){
+                        System.out.println("El codi d'historial es un numero de 1 a "+h.historials.size());
+                        codi =-1;
+                    }
+                    }
                     break;
                 //Opción para salir.
                 case 7:
@@ -420,5 +434,4 @@ public class GestioHospital {
             return false;
         }
     }
-
 }
