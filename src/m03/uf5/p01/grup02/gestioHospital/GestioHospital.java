@@ -124,31 +124,41 @@ public class GestioHospital {
                         keyboard.nextLine();
                         System.out.println("");
 
-                        if (option == 1) {
+                switch (option) {
+                    case 1:
+                        {
                             String buscar;
                             System.out.print("Introdueix el NIF del pacient: ");
                             buscar = keyboard.nextLine();
                             Pacient p = h.buscarPacientNif(buscar);
                             printPacient(p);
+                            break;
                         }
-                        if (option == 2) {
+                    case 2:
+                        {
                             String buscar;
                             System.out.print("Introdueix el NSS del pacient: ");
                             buscar = keyboard.nextLine();
                             Pacient p = h.buscarPacientNumSeg(buscar);
                             printPacient(p);
+                            break;
                         }
-                        if (option == 3) {
+                    case 3:
+                        {
                             int buscar;
                             System.out.print("Introdueix el CH del pacient: ");
                             buscar = keyboard.nextInt();
                             Pacient p = h.buscarPacientCodiHistorial(buscar);
                             printPacient(p);
+                            break;
                         }
-                        if (option == 4) {
-                            System.out.println("Tancant la sessió...");
-                            System.out.println("");
-                        }
+                    case 4:
+                        System.out.println("Tancant la sessió...");
+                        System.out.println("");
+                        break;
+                    default:
+                        break;
+                }
                     } while (option != 4);
                     break;
                 //Opción mstrar un médico.
@@ -169,31 +179,41 @@ public class GestioHospital {
                         keyboard.nextLine();
                         System.out.println("");
 
-                        if (option == 1) {
+                switch (option) {
+                    case 1:
+                        {
                             String buscar;
                             System.out.print("Introdueix el NIF del metge: ");
                             buscar = keyboard.nextLine();
                             Metge m = h.bucarMetgeNif(buscar);
                             printMetge(m);
+                            break;
                         }
-                        if (option == 2) {
+                    case 2:
+                        {
                             String buscar;
                             System.out.print("Introdueix el NSS del metge: ");
                             buscar = keyboard.nextLine();
                             Metge m = h.buscarMetgeNumSeg(buscar);
                             printMetge(m);
+                            break;
                         }
-                        if (option == 3) {
+                    case 3:
+                        {
                             int buscar;
                             System.out.print("Introdueix el NE del metge: ");
                             buscar = keyboard.nextInt();
                             Metge m = h.buscarMetgeNumEmpleat(buscar);
                             printMetge(m);
+                            break;
                         }
-                        if (option == 4) {
-                            System.out.println("Tancant la sessió...");
-                            System.out.println("");
-                        }
+                    case 4:
+                        System.out.println("Tancant la sessió...");
+                        System.out.println("");
+                        break;
+                    default:
+                        break;
+                }
                     } while (option != 4);
                     break;
                 //Opción para ver el historial.
