@@ -10,7 +10,7 @@ public class GestioHospital {
     static boolean valid;
 
     public static void main(String[] args) {
-
+        
         int option;
         creaHospital();
 
@@ -189,31 +189,41 @@ public class GestioHospital {
                         keyboard.nextLine();
                         System.out.println("");
 
-                        if (option == 1) {
+                switch (option) {
+                    case 1:
+                        {
                             String buscar;
                             System.out.print("Introdueix el NIF del pacient: ");
                             buscar = keyboard.nextLine();
                             Pacient p = h.buscarPacientNif(buscar);
                             printPacient(p);
+                            break;
                         }
-                        if (option == 2) {
+                    case 2:
+                        {
                             String buscar;
                             System.out.print("Introdueix el NSS del pacient: ");
                             buscar = keyboard.nextLine();
                             Pacient p = h.buscarPacientNumSeg(buscar);
                             printPacient(p);
+                            break;
                         }
-                        if (option == 3) {
+                    case 3:
+                        {
                             int buscar;
                             System.out.print("Introdueix el CH del pacient: ");
                             buscar = keyboard.nextInt();
                             Pacient p = h.buscarPacientCodiHistorial(buscar);
                             printPacient(p);
+                            break;
                         }
-                        if (option == 4) {
-                            System.out.println("Tancant la sessió...");
-                            System.out.println("");
-                        }
+                    case 4:
+                        System.out.println("Tancant la sessió...");
+                        System.out.println("");
+                        break;
+                    default:
+                        break;
+                }
                     } while (option != 4);
                     break;
                 //Opción mstrar un médico.
@@ -234,31 +244,41 @@ public class GestioHospital {
                         keyboard.nextLine();
                         System.out.println("");
 
-                        if (option == 1) {
+                switch (option) {
+                    case 1:
+                        {
                             String buscar;
                             System.out.print("Introdueix el NIF del metge: ");
                             buscar = keyboard.nextLine();
                             Metge m = h.bucarMetgeNif(buscar);
                             printMetge(m);
+                            break;
                         }
-                        if (option == 2) {
+                    case 2:
+                        {
                             String buscar;
                             System.out.print("Introdueix el NSS del metge: ");
                             buscar = keyboard.nextLine();
                             Metge m = h.buscarMetgeNumSeg(buscar);
                             printMetge(m);
+                            break;
                         }
-                        if (option == 3) {
+                    case 3:
+                        {
                             int buscar;
                             System.out.print("Introdueix el NE del metge: ");
                             buscar = keyboard.nextInt();
                             Metge m = h.buscarMetgeNumEmpleat(buscar);
                             printMetge(m);
+                            break;
                         }
-                        if (option == 4) {
-                            System.out.println("Tancant la sessió...");
-                            System.out.println("");
-                        }
+                    case 4:
+                        System.out.println("Tancant la sessió...");
+                        System.out.println("");
+                        break;
+                    default:
+                        break;
+                }
                     } while (option != 4);
                     break;
                 //Opción para ver el historial.
@@ -338,8 +358,8 @@ public class GestioHospital {
         h.afegirMetge(new Metge("Mario", "Caballo", "Tejas", "15 98765432 83", "44656565H", 3, 1200, "ES6618948488841162177423", "655321654", new Adreca("Sabadell", 8224, "C/ Rábada", 6, "2º", "1ª")));
 
         //nom, cognom1, cognom2, numSegSocial, nif, telefon, adreca
-        h.afegirPacient(new Pacient("Maria", "Vazquez", "Escabeche", "32 56481379 02", "42159785A", "956363154", new Adreca("Terrassa", 8228, "C/ Teleñeco", 103, "2º", "4ª")));
-        h.afegirPacient(new Pacient("Eugenio", "Caraca", "Varana", "21 45632198 55", "46323251D", "653215843", new Adreca("Terrassa", 8228, "C/ Vasquez", 7, "-", "-")));
+        h.afegirPacient(new Pacient("Maria", "Vazquez", "Escabeche", "32 56481379 95", "42159785A", "956363154", new Adreca("Terrassa", 8228, "C/ Teleñeco", 103, "2º", "4ª")));
+        h.afegirPacient(new Pacient("Eugenio", "Caraca", "Varana", "21 45632198 55", "46323251D", "753215843", new Adreca("Terrassa", 8228, "C/ Vasquez", 7, "-", "-")));
         h.afegirPacient(new Pacient("Aitor", "Tilla", "Buena", "11 74185236 42", "43561532S", "651856493", new Adreca("Terrassa", 8228, "C/ Matinada", 4, "1º", "1ª")));
 
         h.crearVisita(h.buscarPacientNif("42159785A"), h.bucarMetgeNif("45932905L"), h.buscarMalaltiaCodi(1));
@@ -395,8 +415,10 @@ public class GestioHospital {
 
     }
 
-    private static void comprobarTelefon(String telefon) {
-
+    private static boolean comprobarTelefon(String telefon) {
+        Pattern pattern = Pattern.compile("^[976][9876543210]{8}");
+        Matcher matcher = pattern.matcher(telefon);
+        return matcher.matches();
     }
 
     private static boolean comprobarNif(String nif) {
@@ -409,7 +431,6 @@ public class GestioHospital {
                 int nifSinLetraInt = Integer.parseInt(nifSinLetra);
 
                 char letraNum = nif.toUpperCase().charAt(8);
-                String letraNumString = Character.toString(letraNum);
                 int moduloNif = nifSinLetraInt % 23;
 
                 return arrayLetrasNif[moduloNif] == letraNum;
