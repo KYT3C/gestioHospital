@@ -14,7 +14,7 @@ public class GestioHospital {
     static boolean valid;
 
     public static void main(String[] args) {
-
+        
         int option;
         creaHospital();
 
@@ -267,8 +267,8 @@ public class GestioHospital {
         h.afegirMetge(new Metge("Mario", "Caballo", "Tejas", "15 98765432 83", "44656565H", 3, 1200, "ES6618948488841162177423", "655321654", new Adreca("Sabadell", 8224, "C/ Rábada", 6, "2º", "1ª")));
 
         //nom, cognom1, cognom2, numSegSocial, nif, telefon, adreca
-        h.afegirPacient(new Pacient("Maria", "Vazquez", "Escabeche", "32 56481379 02", "42159785A", "956363154", new Adreca("Terrassa", 8228, "C/ Teleñeco", 103, "2º", "4ª")));
-        h.afegirPacient(new Pacient("Eugenio", "Caraca", "Varana", "21 45632198 55", "46323251D", "653215843", new Adreca("Terrassa", 8228, "C/ Vasquez", 7, "-", "-")));
+        h.afegirPacient(new Pacient("Maria", "Vazquez", "Escabeche", "32 56481379 95", "42159785A", "956363154", new Adreca("Terrassa", 8228, "C/ Teleñeco", 103, "2º", "4ª")));
+        h.afegirPacient(new Pacient("Eugenio", "Caraca", "Varana", "21 45632198 55", "46323251D", "753215843", new Adreca("Terrassa", 8228, "C/ Vasquez", 7, "-", "-")));
         h.afegirPacient(new Pacient("Aitor", "Tilla", "Buena", "11 74185236 42", "43561532S", "651856493", new Adreca("Terrassa", 8228, "C/ Matinada", 4, "1º", "1ª")));
 
         h.crearVisita(h.buscarPacientNif("42159785A"), h.bucarMetgeNif("45932905L"), h.buscarMalaltiaCodi(1));
@@ -291,8 +291,10 @@ public class GestioHospital {
 
     }
 
-    private static void comprobarTelefon(String telefon) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static boolean comprobarTelefon(String telefon) {
+        Pattern pattern = Pattern.compile("^[976][9876543210]{8}");
+        Matcher matcher = pattern.matcher(telefon);
+        return matcher.matches();
     }
 
     private static boolean comprobarNif(String nif) {
