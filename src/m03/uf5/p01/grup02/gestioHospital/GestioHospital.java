@@ -407,11 +407,7 @@ public class GestioHospital {
         Pattern pattern = Pattern.compile("^[a-zA-Z\\s]*$");
         Matcher matcher = pattern.matcher(inputStr);
 
-        if (matcher.matches()) {
-            return true;
-        } else {
-            return false;
-        }
+        return matcher.matches();
 
     }
 
@@ -456,7 +452,7 @@ public class GestioHospital {
             long lastNum = Integer.parseInt(numSeguretatSocial.substring(12, 14));
 
             return num2 % 97 == lastNum;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return false;
         }
     }
