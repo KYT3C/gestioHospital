@@ -198,7 +198,7 @@ public class GestioHospital {
                                 System.out.print("Introdueix el NIF del pacient: ");
                                 buscar = keyboard.nextLine();
                                 Pacient p = h.buscarPacientNif(buscar);
-                                printPacient(p);
+                                System.out.println(p.toString());
                                 break;
                             }
                             case 2: {
@@ -206,7 +206,7 @@ public class GestioHospital {
                                 System.out.print("Introdueix el NSS del pacient: ");
                                 buscar = keyboard.nextLine();
                                 Pacient p = h.buscarPacientNumSeg(buscar);
-                                printPacient(p);
+                                System.out.println(p.toString());
                                 break;
                             }
                             case 3: {
@@ -214,7 +214,7 @@ public class GestioHospital {
                                 System.out.print("Introdueix el CH del pacient: ");
                                 buscar = keyboard.nextInt();
                                 Pacient p = h.buscarPacientCodiHistorial(buscar);
-                                printPacient(p);
+                                System.out.println(p.toString());
                                 break;
                             }
                         }
@@ -304,22 +304,6 @@ public class GestioHospital {
         System.out.println("5. Mostrar malalties");
         System.out.println("6. Veure historial");
         System.out.println("7. Sotir");
-
-        System.out.println("");
-
-    }
-
-    //Método que muestra el paciente.
-    private static void printPacient(Pacient p) {
-
-        System.out.println("");
-        System.out.println("    Pacient    ");
-        System.out.println("Nom: " + p.getNom());
-        System.out.println("Primer cognom: " + p.getCognom1());
-        System.out.println("Segon cognom: " + p.getCognom2());
-        System.out.println("NIF: " + p.getNif());
-        System.out.println("Número Seguretat Social: " + p.getNumSegSocial());
-        System.out.println("Telefon: " + p.getTelefon());
 
         System.out.println("");
 
