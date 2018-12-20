@@ -1,6 +1,7 @@
 package m03.uf5.p01.grup02.gestioHospital;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Visita {
 
@@ -24,5 +25,19 @@ public class Visita {
 
     public Malaltia getMalaltia() {
         return malaltia;
+    }
+    
+    @Override
+    public String toString(){
+        String chain;
+        chain = "Data: "+data.format(DateTimeFormatter.ISO_DATE)+"\n";
+        chain += "   "+data.format(DateTimeFormatter.ISO_TIME)+"\n";
+        chain += "Metge\n";
+        chain += "  "+metge.getNom()+"\n";
+        chain += "  "+metge.getNif()+"\n";
+        chain += "Malaltia\n";
+        chain += "  "+malaltia.getNom();
+        chain += "  "+malaltia.getCodi();
+        return chain;
     }
 }
