@@ -1,9 +1,5 @@
 package m03.uf5.p01.grup02.gestioHospital;
 
-/**
- *
- * @author sergi.f.sellares
- */
 public class Pacient extends Persona {
     public static int numHistorial = 0;
     Historial historial;

@@ -2,10 +2,6 @@ package m03.uf5.p01.grup02.gestioHospital;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author sergi.f.sellares
- */
 public class Visita {
     private final LocalDateTime data;
     private final Metge metge;

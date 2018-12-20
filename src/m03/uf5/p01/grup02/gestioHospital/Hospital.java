@@ -2,10 +2,6 @@ package m03.uf5.p01.grup02.gestioHospital;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author sergi.f.sellares
- */
 public class Hospital {
     String nom;
     ArrayList<Pacient> pacients;

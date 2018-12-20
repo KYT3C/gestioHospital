@@ -3,10 +3,6 @@ package m03.uf5.p01.grup02.gestioHospital;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-/**
- *
- * @author sergi.f.sellares
- */
 public class Historial {
 
     static int numHistorial = 1;
