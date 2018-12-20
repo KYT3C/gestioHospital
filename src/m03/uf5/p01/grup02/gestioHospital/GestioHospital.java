@@ -186,7 +186,6 @@ public class GestioHospital {
                         System.out.println("1. NIF");
                         System.out.println("2. NSS");
                         System.out.println("3. CH");
-                        System.out.println("4. Sortir");
 
                         System.out.print("Selecciona una opció: ");
                         option = keyboard.nextInt();
@@ -218,12 +217,6 @@ public class GestioHospital {
                                 printPacient(p);
                                 break;
                             }
-                            case 4:
-                                System.out.println("Tancant la sessió...");
-                                System.out.println("");
-                                break;
-                            default:
-                                break;
                         }
                     } while (option != 4);
                     break;
@@ -238,7 +231,6 @@ public class GestioHospital {
                         System.out.println("1. NIF");
                         System.out.println("2. NSS");
                         System.out.println("3. NE");
-                        System.out.println("4. Sortir");
 
                         System.out.print("Selecciona una opció: ");
                         option = keyboard.nextInt();
@@ -251,7 +243,7 @@ public class GestioHospital {
                                 System.out.print("Introdueix el NIF del metge: ");
                                 buscar = keyboard.nextLine();
                                 Metge m = h.bucarMetgeNif(buscar);
-                                printMetge(m);
+                                System.out.println(m.toString());
                                 break;
                             }
                             case 2: {
@@ -259,7 +251,7 @@ public class GestioHospital {
                                 System.out.print("Introdueix el NSS del metge: ");
                                 buscar = keyboard.nextLine();
                                 Metge m = h.buscarMetgeNumSeg(buscar);
-                                printMetge(m);
+                                System.out.println(m.toString());
                                 break;
                             }
                             case 3: {
@@ -267,25 +259,30 @@ public class GestioHospital {
                                 System.out.print("Introdueix el NE del metge: ");
                                 buscar = keyboard.nextInt();
                                 Metge m = h.buscarMetgeNumEmpleat(buscar);
-                                printMetge(m);
+                                System.out.println(m.toString());
                                 break;
                             }
-                            case 4:
-                                System.out.println("Tancant la sessió...");
-                                System.out.println("");
-                                break;
-                            default:
-                                break;
                         }
                     } while (option != 4);
                     break;
-                //Opción para ver el historial.
+                //Opción mstrar un médico.
                 case 5:
+                        System.out.println("Ha seleccionat mostrar malaltia");
+                        System.out.println("");
+
+                        for (int i = 0; i < h.malalties.size(); i++) {
+                            System.out.println("Codi malaltia: " + h.malalties.get(i).getCodi() + "    Nom malaltia: " + h.malalties.get(i).getNom());
+                        
+                    }
+                        
+                    break;
+                //Opción para ver el historial.
+                case 6:
                     System.out.println("Ha seleccionat veure historial");
                     System.out.println("");
                     break;
                 //Opción para salir.
-                case 6:
+                case 7:
                     System.out.println("Ha seleccionat sortir");
                     System.out.println("");
                     break;
@@ -293,7 +290,7 @@ public class GestioHospital {
                     break;
             }
 
-        } while (option != 6);
+        } while (option != 7);
     }
 
     //Método que muestra el menú.
@@ -304,8 +301,9 @@ public class GestioHospital {
         System.out.println("2. Nou pacient");
         System.out.println("3. Mostrar pacient");
         System.out.println("4. Mostrar metge");
-        System.out.println("5. Veure historial");
-        System.out.println("6. Sotir");
+        System.out.println("5. Mostrar malalties");
+        System.out.println("6. Veure historial");
+        System.out.println("7. Sotir");
 
         System.out.println("");
 
@@ -322,23 +320,6 @@ public class GestioHospital {
         System.out.println("NIF: " + p.getNif());
         System.out.println("Número Seguretat Social: " + p.getNumSegSocial());
         System.out.println("Telefon: " + p.getTelefon());
-
-        System.out.println("");
-
-    }
-
-    private static void printMetge(Metge m) {
-
-        System.out.println("");
-        System.out.println("    Metge    ");
-        System.out.println("Nom: " + m.getNom());
-        System.out.println("Primer cognom: " + m.getCognom1());
-        System.out.println("Segon cognom: " + m.getCognom2());
-        System.out.println("NIF: " + m.getNif());
-        System.out.println("Número Seguretat Social: " + m.getNumSegSocial());
-        System.out.println("Telefon: " + m.getTelefon());
-        System.out.println("Número d'empleat: " + m.getNumEmpleat());
-        System.out.println("Slari mensual: " + m.getSalariMensual());
 
         System.out.println("");
 
@@ -403,7 +384,7 @@ public class GestioHospital {
 
         CharSequence inputStr = nombre;
 
-        Pattern pattern = Pattern.compile("^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑçÇ\\s]*$");
+        Pattern pattern = Pattern.compile("^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑçÇäÄëËïÏöÖüÜ]*$");
         Matcher matcher = pattern.matcher(inputStr);
 
         return matcher.matches();

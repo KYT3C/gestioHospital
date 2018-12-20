@@ -28,23 +28,15 @@ public class Metge extends Persona {
     @Override
     public String toString() {
         String chain;
-        chain = getNom();
-        chain = chain + ",";
-        chain = chain + getCognom1();
-        chain = chain + ",";
-        chain = chain + getCognom2();
-        chain = chain + ",";
-        chain = chain + getNumSegSocial();
-        chain = chain + ",";
-        chain = chain + getNif();
-        chain = chain + ",";
-        chain = chain + getTelefon();
-        chain = chain + ",";
-        chain = chain + getNumEmpleat();
-        chain = chain + ",";
-        chain = chain + getSalariMensual();
-        chain = chain + ",";
-        chain = chain + getCodiCompteCorrent();
+        chain = "    Metge    \n";
+        chain = chain + "Nom: " + getNom() + "\n";
+        chain = chain + "Primer cognom: " + getCognom1() + "\n";
+        chain = chain + "Segon cognom: " + getCognom2() + "\n";
+        chain = chain + "NIF: " + getNif() + "\n";
+        chain = chain + "Número Seguretat Social: " + getNumSegSocial() + "\n";
+        chain = chain + "Telefon: " + getTelefon() + "\n";
+        chain = chain + "Número d'empleat: " + getNumEmpleat() + "\n";
+        chain = chain + "Salari mensual: " + getSalariMensual() + "\n";
         return chain;
     }
 }
