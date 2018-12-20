@@ -1,5 +1,6 @@
 package m03.uf5.p01.grup02.gestioHospital;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,8 +20,8 @@ public class GestioHospital {
         do {
             menu();
             System.out.print("Introdueix una opció: ");
-            option = keyboard.nextInt();
-            keyboard.nextLine();
+
+            option = obtenNumeroTeclado(keyboard);
             System.out.println("");
 
             switch (option) {
@@ -42,11 +43,10 @@ public class GestioHospital {
                     System.out.println("");
                     System.out.println("1. NIF");
                     System.out.println("2. NSS");
-                    System.out.println("3. CH");
+                    System.out.println("3. Codi Historial");
 
                     System.out.print("Selecciona una opció: ");
-                    int optionPacient = keyboard.nextInt();
-                    keyboard.nextLine();
+                    int optionPacient = obtenNumeroTeclado(keyboard);
                     System.out.println("");
 
                     switch (optionPacient) {
@@ -66,8 +66,8 @@ public class GestioHospital {
                             break;
                         case 3:
                             do {
-                                System.out.print("Introdueix el CH del pacient: ");
-                                valid = h.buscarPacientCodiHistorial(pacientCH = keyboard.nextInt()) != null;
+                                System.out.print("Introdueix el Codi Historial del pacient: ");
+                                valid = h.buscarPacientCodiHistorial(pacientCH = obtenNumeroTeclado(keyboard)) != null;
                             } while (valid != true);
                             pacient = h.buscarPacientCodiHistorial(pacientCH);
                             break;
@@ -78,11 +78,10 @@ public class GestioHospital {
                     System.out.println("");
                     System.out.println("1. NIF");
                     System.out.println("2. NSS");
-                    System.out.println("3. NE");
+                    System.out.println("3. Número empleat");
 
                     System.out.print("Selecciona una opció: ");
-                    int optionMetge = keyboard.nextInt();
-                    keyboard.nextLine();
+                    int optionMetge = obtenNumeroTeclado(keyboard);;
                     System.out.println("");
 
                     switch (optionMetge) {
@@ -103,7 +102,7 @@ public class GestioHospital {
                         case 3:
                             do {
                                 System.out.print("Introdueix el CE del metge: ");
-                                valid = h.buscarMetgeNumEmpleat(metgeNE = keyboard.nextInt()) != null;
+                                valid = h.buscarMetgeNumEmpleat(metgeNE = obtenNumeroTeclado(keyboard)) != null;
                             } while (valid != true);
                             metge = h.buscarMetgeNumEmpleat(metgeNE);
                             break;
@@ -112,7 +111,7 @@ public class GestioHospital {
                     System.out.println("");
                     do {
                         System.out.print("Introdueix el codi de la malaltia: ");
-                        valid = h.buscarMalaltiaCodi(malaltiaInt = keyboard.nextInt()) != null;
+                        valid = h.buscarMalaltiaCodi(malaltiaInt = obtenNumeroTeclado(keyboard)) != null;
                     } while (valid != true);
                     malaltia = h.buscarMalaltiaCodi(malaltiaInt);
 
@@ -177,123 +176,111 @@ public class GestioHospital {
                     break;
                 //Opción para mostrar un paciente.
                 case 3:
-                    do {
-                        System.out.println("Ha seleccionat mostrar pacient");
-                        System.out.println("");
+                    System.out.println("Ha seleccionat mostrar pacient");
+                    System.out.println("");
 
-                        System.out.println("Amb quina identificació vols buscar al pacient?");
-                        System.out.println("");
-                        System.out.println("1. NIF");
-                        System.out.println("2. NSS");
-                        System.out.println("3. CH");
+                    System.out.println("Amb quina identificació vols buscar al pacient?");
+                    System.out.println("");
+                    System.out.println("1. NIF");
+                    System.out.println("2. NSS");
+                    System.out.println("3. Codi Historial");
 
-                        System.out.print("Selecciona una opció: ");
-                        option = keyboard.nextInt();
-                        keyboard.nextLine();
-                        System.out.println("");
+                    System.out.print("Selecciona una opció: ");
+                    option = obtenNumeroTeclado(keyboard);;
+                    System.out.println("");
 
-                        switch (option) {
-                            case 1: {
-                                String buscar;
-                                System.out.print("Introdueix el NIF del pacient: ");
-                                buscar = keyboard.nextLine();
-                                Pacient p = h.buscarPacientNif(buscar);
-                                System.out.println(p.toString());
-                                break;
-                            }
-                            case 2: {
-                                String buscar;
-                                System.out.print("Introdueix el NSS del pacient: ");
-                                buscar = keyboard.nextLine();
-                                Pacient p = h.buscarPacientNumSeg(buscar);
-                                System.out.println(p.toString());
-                                break;
-                            }
-                            case 3: {
-                                int buscar;
-                                System.out.print("Introdueix el CH del pacient: ");
-                                buscar = keyboard.nextInt();
-                                Pacient p = h.buscarPacientCodiHistorial(buscar);
-                                System.out.println(p.toString());
-                                break;
-                            }
+                    switch (option) {
+                        case 1: {
+                            String buscar;
+                            System.out.print("Introdueix el NIF del pacient: ");
+                            buscar = keyboard.nextLine();
+                            Pacient p = h.buscarPacientNif(buscar);
+                            System.out.println(p.toString());
+                            break;
                         }
-                    } while (option != 4);
+                        case 2: {
+                            String buscar;
+                            System.out.print("Introdueix el NSS del pacient: ");
+                            buscar = keyboard.nextLine();
+                            Pacient p = h.buscarPacientNumSeg(buscar);
+                            System.out.println(p.toString());
+                            break;
+                        }
+                        case 3: {
+                            int buscar;
+                            System.out.print("Introdueix el CH del pacient: ");
+                            buscar = obtenNumeroTeclado(keyboard);
+                            Pacient p = h.buscarPacientCodiHistorial(buscar);
+                            System.out.println(p.toString());
+                            break;
+                        }
+                    }
                     break;
                 //Opción mstrar un médico.
                 case 4:
-                    do {
-                        System.out.println("Ha seleccionat mostrar metge");
-                        System.out.println("");
+                    System.out.println("Ha seleccionat mostrar metge");
+                    System.out.println("");
 
-                        System.out.println("Amb quina identificació vols buscar al metge?");
-                        System.out.println("");
-                        System.out.println("1. NIF");
-                        System.out.println("2. NSS");
-                        System.out.println("3. NE");
+                    System.out.println("Amb quina identificació vols buscar al metge?");
+                    System.out.println("");
+                    System.out.println("1. NIF");
+                    System.out.println("2. NSS");
+                    System.out.println("3. Número empleat");
 
-                        System.out.print("Selecciona una opció: ");
-                        option = keyboard.nextInt();
-                        keyboard.nextLine();
-                        System.out.println("");
+                    System.out.print("Selecciona una opció: ");
+                    option = obtenNumeroTeclado(keyboard);;
+                    System.out.println("");
 
-                        switch (option) {
-                            case 1: {
-                                String buscar;
-                                System.out.print("Introdueix el NIF del metge: ");
-                                buscar = keyboard.nextLine();
-                                Metge m = h.bucarMetgeNif(buscar);
-                                System.out.println(m.toString());
-                                break;
-                            }
-                            case 2: {
-                                String buscar;
-                                System.out.print("Introdueix el NSS del metge: ");
-                                buscar = keyboard.nextLine();
-                                Metge m = h.buscarMetgeNumSeg(buscar);
-                                System.out.println(m.toString());
-                                break;
-                            }
-                            case 3: {
-                                int buscar;
-                                System.out.print("Introdueix el NE del metge: ");
-                                buscar = keyboard.nextInt();
-                                Metge m = h.buscarMetgeNumEmpleat(buscar);
-                                System.out.println(m.toString());
-                                break;
-                            }
+                    switch (option) {
+                        case 1: {
+                            String buscar;
+                            System.out.print("Introdueix el NIF del metge: ");
+                            buscar = keyboard.nextLine();
+                            Metge m = h.bucarMetgeNif(buscar);
+                            System.out.println(m.toString());
+                            break;
                         }
-                    } while (option != 4);
+                        case 2: {
+                            String buscar;
+                            System.out.print("Introdueix el NSS del metge: ");
+                            buscar = keyboard.nextLine();
+                            Metge m = h.buscarMetgeNumSeg(buscar);
+                            System.out.println(m.toString());
+                            break;
+                        }
+                        case 3: {
+                            int buscar;
+                            System.out.print("Introdueix el NE del metge: ");
+                            buscar = obtenNumeroTeclado(keyboard);
+                            Metge m = h.buscarMetgeNumEmpleat(buscar);
+                            System.out.println(m.toString());
+                            break;
+                        }
+                    }
                     break;
                 //Opción mstrar un médico.
                 case 5:
-                        System.out.println("Ha seleccionat mostrar malaltia");
-                        System.out.println("");
+                    System.out.println("Ha seleccionat mostrar malaltia");
+                    System.out.println("");
 
-                        for (int i = 0; i < h.malalties.size(); i++) {
-                            System.out.println("Codi malaltia: " + h.malalties.get(i).getCodi() + "    Nom malaltia: " + h.malalties.get(i).getNom());
-                        
+                    for (int i = 0; i < h.malalties.size(); i++) {
+                        System.out.println("Codi malaltia: " + h.malalties.get(i).getCodi() + "    Nom malaltia: " + h.malalties.get(i).getNom());
                     }
-                        
+
                     break;
                 //Opción para ver el historial.
                 case 6:
                     System.out.println("Ha seleccionat veure historial");
                     System.out.print("Inserta un codi d'historial: ");
-                    int codi = -1;
-                    while(codi == -1){
-                    try{
-                    codi = Integer.parseInt(keyboard.nextLine());
-                    Historial hh = h.buscarHistorial(codi);
+                    Historial hh;
+                    do{
+                    int codi = obtenNumeroTeclado(keyboard);
+                    hh = h.buscarHistorial(codi);
                     if(hh != null)
                             System.out.println(hh.toString());
                     else
-                        codi = -1;
-                    }catch(NumberFormatException e){
-                        System.out.println("El codi d'historial es un numero de 1 a "+h.historials.size());
-                        codi =-1;
-                    }
-                    }
+                            System.out.println("Aquest historial no existeix");
+                    }while(hh == null);
                     break;
                 //Opción para salir.
                 case 7:
@@ -305,9 +292,8 @@ public class GestioHospital {
             }
 
         } while (option != 7);
-    }
+    } //Método que muestra el menú.
 
-    //Método que muestra el menú.
     private static void menu() {
 
         System.out.println("        Menú        ");
@@ -356,15 +342,13 @@ public class GestioHospital {
         poblacio = keyboard.nextLine();
 
         System.out.print("Introdueix el codi postal: ");
-        codiPostal = keyboard.nextInt();
-        keyboard.nextLine();
+        codiPostal = obtenNumeroTeclado(keyboard);
 
         System.out.print("Introdueix el carrer: ");
         carrer = keyboard.nextLine();
 
         System.out.print("Introdueix el bloc: ");
-        bloc = keyboard.nextInt();
-        keyboard.nextLine();
+        bloc = obtenNumeroTeclado(keyboard);
 
         System.out.print("Introdueix el pis: ");
         pis = keyboard.nextLine();
@@ -376,6 +360,19 @@ public class GestioHospital {
 
         System.out.println("");
         return adreca1;
+    }
+
+    private static int obtenNumeroTeclado(Scanner keyboard) {
+        boolean valido = true;
+        int cod;
+        while (true) {
+            try {
+                cod = Integer.parseInt(keyboard.nextLine());
+                return cod;
+            } catch (NumberFormatException e) {
+                System.out.println("El número no es valido");
+            }
+        }
     }
 
     private static boolean comprobarNombre(String nombre) {

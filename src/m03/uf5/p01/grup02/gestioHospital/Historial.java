@@ -34,13 +34,13 @@ public class Historial {
     @Override
     public String toString() {
         String chain;
-        chain = Integer.toString(codi);
-        chain = chain + ",";
-        chain = chain + pacient.toString();
-        chain = chain + ",";
-        chain = chain + visita.size();
-        chain = chain + ",";
-        chain = chain + visita.toString();
+        chain = "Codi d'historial: "+Integer.toString(codi)+"\n";
+        chain += pacient.toString();
+        chain += "Quantitat de visites: "+ visita.size()+"\n";
+        for(Visita v : visita){
+            chain+= "----- Visita -----\n";
+            chain+= v.toString()+"\n";
+        }
         return chain;
     }
 }
