@@ -366,7 +366,6 @@ public class GestioHospital {
                 int nifSinLetraInt = Integer.parseInt(nifSinLetra);
 
                 char letraNum = nif.toUpperCase().charAt(8);
-                String letraNumString = Character.toString(letraNum);
                 int moduloNif = nifSinLetraInt % 23;
 
                 return arrayLetrasNif[moduloNif] == letraNum;
