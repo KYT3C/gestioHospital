@@ -1,7 +1,7 @@
 package m03.uf5.p01.grup02.gestioHospital;
 
 public abstract class Persona {
-    
+
     private final String nom;
     private final String cognom1;
     private final String cognom2;
@@ -43,8 +43,8 @@ public abstract class Persona {
     public String getTelefon() {
         return telefon;
     }
-   
-    public Adreca getAdreca(){
+
+    public Adreca getAdreca() {
         return adreca;
     }
 }

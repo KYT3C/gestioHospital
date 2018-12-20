@@ -24,7 +24,7 @@ public class Metge extends Persona {
     public String getCodiCompteCorrent() {
         return codiCompteCorrent;
     }
-    
+
     @Override
     public String toString() {
         String chain;
