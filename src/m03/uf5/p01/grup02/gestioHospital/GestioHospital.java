@@ -264,16 +264,16 @@ public class GestioHospital {
                 //Opción para ver el historial.
                 case 6:
                     System.out.println("Ha seleccionat veure historial");
-                    System.out.print("Inserta un codi d'historial: ");
                     Historial hh;
-                    do{
-                    int codi = obtenNumeroTeclado(keyboard);
-                    hh = h.buscarHistorial(codi);
-                    if(hh != null)
+                    do {
+                        int codi = obtenNumeroTeclado(keyboard, "Inserta un codi d'historial: ");
+                        hh = h.buscarHistorial(codi);
+                        if (hh != null) {
                             System.out.println(hh.toString());
-                    else
+                        } else {
                             System.out.println("Aquest historial no existeix");
-                    }while(hh == null);
+                        }
+                    } while (hh == null);
                     break;
                 //Opción para salir.
                 case 7:
@@ -342,7 +342,7 @@ public class GestioHospital {
             System.out.print("Introdueix el carrer: ");
             valid = comprobarNombre(carrer = keyboard.nextLine());
         } while (valid != true);
-        
+
         bloc = obtenNumeroTeclado(keyboard, "Introdueix el bloc: ");
 
         do {
