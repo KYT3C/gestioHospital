@@ -3,7 +3,6 @@ package m03.uf5.p01.grup02.gestioHospital;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import jdk.nashorn.internal.runtime.regexp.RegExp;
 
 public class GestioHospital {
 
